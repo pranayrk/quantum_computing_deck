@@ -1,1 +1,1 @@
-# quantum_computing_deck
+# Pranay's Quantum Computing Deck
