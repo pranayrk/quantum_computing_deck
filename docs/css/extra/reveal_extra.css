@@ -5,3 +5,13 @@
 .reveal strong {
     color: dodgerblue;
 }
+
+.reveal blockquote {
+    width: 100%;
+    font-size: 85%;
+    font-style: normal;
+}
+
+.reveal em {
+    color: mediumseagreen;
+}
