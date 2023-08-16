@@ -1,3 +1,5 @@
 main:
   - title
   - intro_01
+  - dirac_intro
+  - qubits

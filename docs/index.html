@@ -4,11 +4,13 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>The Mathematics of Quantum Computing</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/black.css">
+
+        <link rel="stylesheet" href="css/extra/reveal_extra.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -18,13 +20,53 @@
 			<div class="slides">
 
 <section data-markdown>
-# The Mathematics of Quantum Computing
+## The Mathematics of Quantum Computing
+##### (Tentative Title)
+
+Pranay Raja Krishnan
+
+22MMT002
+
+The LNM Institute of Information & Technology
+
+Jaipur
 </section>
 
 <section data-markdown>
-## What is Quantum Computing?
-* Quantum computing (theory) is at the intersection of math, physics and computer science. 
-* In the last decades of the twentieth century, scientists sought to combine two of the century’s most influential and revolutionary theories: information theory and quantum mechanics. Their success gave rise to a new view of computation and information.
+#### What is Quantum Computing?
+* In the last decades of the twentieth century, certain scientists sought to combine two recent theories that were highly influential: 
+
+    **Information Theory** and **Quantum Mechanics**.
+* **1984:** Charles Bennet and Gilles Brassad published a quantum key distribution protocol now called **BB84**, allowing two parties to establish an absolutely secure secret key.
+---
+### What is Quantum Computing?
+* **1980s:** Feynman recognized that a system of  
+    $n$-particle quantum systems could not be simulated efficiently by a Turing machine, seemingly requiring time/space that is exponential in $n$.
+* He proposed that computers based on quantum systems could simulate quantum processes with more efficiency.
+---
+### What is Quantum Computing?
+* This led to the question: If simluating quantum problems was more efficient on a quantum computer, would there be other problems that would run more efficiently on a quantum computer?
+* **1994:** Peter Shor found the famous **Shor's Algorithm** for a quantum computer which could factors $n$-digit integers into primes with $n^2$ efficiency (with high probability).
+
+Note: 
+The fastest known algorithm in classical computing is of efficiency around $2^{n^{1/3}}$
+</section>
+
+<section data-markdown>
+## A note on notation
+
+* **Dirac's Bra–ket notation** is a notation for linear algebra and linear operators on complex vector spaces.
+* It is specifically designed to ease the types of calculations that frequently come up in quantum mechanics, especially those which deal with quantum states and linear transformations.
+* We will be using it extensively and will progressively explain how it works.
+</section>
+
+<section data-markdown>
+# Qubits
+* The computers we use today rely on classical information theory, which are based on 'bits' which can represents a 0 or 1 state.
+* These computers (which will be referred to as **classical computers**) are equivalent to a Turing Machine in computational efficiency.
+* Classical computers are based on bits, which are systems that can take on two
+states. 
+
 </section>
 
 			</div>
@@ -41,7 +83,7 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
+                slideNumber: true,
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
 			});

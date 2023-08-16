@@ -1,1 +1,1 @@
-doctree index.html
+doctree docs.yml index.html

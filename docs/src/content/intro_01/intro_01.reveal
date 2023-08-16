@@ -1,5 +1,19 @@
 <section data-markdown>
-## What is Quantum Computing?
-* Quantum computing (theory) is at the intersection of math, physics and computer science. 
-* In the last decades of the twentieth century, scientists sought to combine two of the century’s most influential and revolutionary theories: information theory and quantum mechanics. Their success gave rise to a new view of computation and information.
+#### What is Quantum Computing?
+* In the last decades of the twentieth century, certain scientists sought to combine two recent theories that were highly influential: 
+
+    **Information Theory** and **Quantum Mechanics**.
+* **1984:** Charles Bennet and Gilles Brassad published a quantum key distribution protocol now called **BB84**, allowing two parties to establish an absolutely secure secret key.
+---
+### What is Quantum Computing?
+* **1980s:** Feynman recognized that a system of  
+    $n$-particle quantum systems could not be simulated efficiently by a Turing machine, seemingly requiring time/space that is exponential in $n$.
+* He proposed that computers based on quantum systems could simulate quantum processes with more efficiency.
+---
+### What is Quantum Computing?
+* This led to the question: If simluating quantum problems was more efficient on a quantum computer, would there be other problems that would run more efficiently on a quantum computer?
+* **1994:** Peter Shor found the famous **Shor's Algorithm** for a quantum computer which could factors $n$-digit integers into primes with $n^2$ efficiency (with high probability).
+
+Note: 
+The fastest known algorithm in classical computing is of efficiency around $2^{n^{1/3}}$
 </section>
