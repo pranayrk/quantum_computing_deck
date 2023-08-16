@@ -15,3 +15,13 @@
 .reveal em {
     color: mediumseagreen;
 }
+
+.reveal li{
+    font-size: 85%;
+}
+
+.reveal code {
+    font: inherit;
+    color: mediumseagreen;
+    font-size: 50%;
+}
