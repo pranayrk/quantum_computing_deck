@@ -154,5 +154,4 @@ $ = c_0 \ket{0} + c_1 \ket{1} + c_2 \ket{2} + c_3 \ket{3}$.
 * **Example:** Consider the state $\ket{\psi_1} = \frac{1}{\sqrt{2}} (\ket{00} + \ket{11})$. We can show this is entangled. `TODO`
 * **Example:** Consider the state $\ket{\psi_2} = \frac{1}{\sqrt{2}} (\ket{01} + \ket{11})$. We can show this is seperable since we can write $\ket{\psi_2} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \otimes \ket{1}$
 
-
 </section>

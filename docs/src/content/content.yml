@@ -3,3 +3,4 @@ main:
   - intro_01
   - dirac_intro
   - qubits
+  - gates
