@@ -1,4 +1,4 @@
-main:
+map:
   - src/precontent
   - src/content
   - src/postcontent
