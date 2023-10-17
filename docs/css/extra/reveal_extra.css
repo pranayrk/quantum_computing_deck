@@ -8,7 +8,7 @@
 
 .reveal blockquote {
     width: 100%;
-    font-size: 85%;
+    font-size: 100%;
     font-style: normal;
 }
 
@@ -16,12 +16,15 @@
     color: mediumseagreen;
 }
 
-.reveal li{
-    font-size: 85%;
-}
-
 .reveal code {
     font: inherit;
     color: mediumseagreen;
-    font-size: 50%;
+}
+
+.reveal li {
+    font-size: 85%;
+}
+
+.reveal p {
+    font-size: 65%;
 }

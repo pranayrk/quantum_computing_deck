@@ -1,6 +1,5 @@
 <section data-markdown>
-## The Mathematics of Quantum Computing
-##### (Tentative Title)
+## Grover's Algorithm
 
 Pranay Raja Krishnan
 
@@ -9,4 +8,5 @@ Pranay Raja Krishnan
 The LNM Institute of Information & Technology
 
 Jaipur
+
 </section>

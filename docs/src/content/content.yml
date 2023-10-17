@@ -1,6 +1,14 @@
 map:
   - title
-  - intro_01
-  - dirac_intro
-  - qubits
-  - gates
+  - intro
+  - hadamard_transform_recap
+  - reflection_operator
+  - problem_setup
+  - algorithm_summary
+  - oracle
+  - diffusion_operator
+  - analysis
+  - optimality
+  - applications
+  - amplitude_amplification
+  - resources
