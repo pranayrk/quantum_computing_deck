@@ -43,6 +43,21 @@ Shor's has an exponential speedup while Grover's has only quadratic speedup
 </section>
 
 <section data-markdown>
+### Computational Basis of Multiple Qubits
+* For $1$ qubit, the computational basis is $\\{ \ket{0}, \ket{1} \\}$
+* For $2$ qubits, the computational basis is $\\{ \ket{0}, \ket{1}, \ket{2}, \ket{3} \\}$ where 
+   * $\ket{0} = \ket{00} = \ket{0} \otimes \ket{0}$
+   * $\ket{1} = \ket{01} = \ket{0} \otimes \ket{1}$
+   * $\ket{2} = \ket{10} = \ket{1} \otimes \ket{0}$
+   * $\ket{3} = \ket{11} = \ket{1} \otimes \ket{1}$
+* For $n$ qubits, the computational basis is $\\{ \ket{0}, \ket{1}, ..., \ket{2^n - 1} \\}$ where
+    * $\ket{0} = \ket{00...00} = \underbrace{\ket{0} \otimes \ket{0} \otimes ... \otimes \ket{0}}_{n\text{ times }}$
+    * $\ket{1} = \ket{00...01} = \underbrace{\ket{0} \otimes \ket{0} \otimes ... \otimes \ket{0}}_{n-1\text{ times }} \otimes \ket{1}$
+    * $\ket{2^n - 1} = \ket{11...11} = \underbrace{\ket{1} \otimes \ket{1} \otimes ... \otimes \ket{1}}_{n\text{ times }}$
+</section>
+
+
+<section data-markdown>
 ### Hadamard Gate
 > The **Hadamard gate** $H$ acts on a single qubit and is represented by the Hadamard matrix 
 $H = \displaystyle\frac{1}{\sqrt{2}} \begin{bmatrix} 1 & 1 \\\\ 1 & -1 \end{bmatrix}$
@@ -98,13 +113,53 @@ $ = 2 \ket\psi - (\ket\psi + \ket{\psi^\perp}) = \ket\psi - \ket{\psi^\perp}$
 
 <section data-markdown>
 ### Problem Setup
-> Grover's Search Algorithm targets an unstructured search problem.
->
->
+
+> Given a set of $N$ elements forming a set $X = \\{ x_1, x_2, ..., x_N \\}$ and a boolean function  
+> $f: X \to \\{ 0,1 \\}$, find elements $x_i \in X$ such that $f(x_i) = 1$
+
+* We are given an unstructured search problem
+* We need to search for solutions from a finite set of possible solutions
+* Consider an example for such a problem:
+    * A set of $N$ coins is laid out on a table heads up
+    * A few of those coins are flipped so that they are tails up
+    * We need to find which coins have been flipped by only looking at one coin at a time
+
+Note:
+* Unstructured means we cannot use any clever tricks like binary search
+* Lov Grover designed this algorithm to be used for searching databases, where we need to match a certain query
 </section>
 
 <section data-markdown>
-### Algorithm Summary
+### Classical Approach
+> Given a set of $N$ elements forming a set $X = \\{ x_1, x_2, ..., x_N \\}$ and a boolean function  
+> $f: X \to \\{ 0,1 \\}$, find elements $x_i \in X$ such that $f(x_i) = 1$
+
+* Consider the case where there is only $1$ possible solution
+* The only classical deterministic algorithm is to query the function $f$ with each value of $x_i \in X$ until we find a solution
+* On average we will require $\frac{N}{2}$ queries to $f$ to determine the solution, and in the worst case we will need $N$ queries to $f$
+* This means that the algorithm will have a time complexity of $O(N)$
+---
+### Classical Approach
+> Given a set of $N$ elements forming a set $X = \\{ x_1, x_2, ..., x_N \\}$ and a boolean function  
+> $f: X \to \\{ 0,1 \\}$, find elements $x_i \in X$ such that $f(x_i) = 1$
+
+* When the number of solutions is not known, any deterministic algorithm will need to query all $N$ possibilities to check if each one is a solution
+* We will need $N$ queries to $f$ in the average and worst case 
+* This means that the time complexity for any classical deterministic algorithm is $O(N)$
+
+Note: 
+* When we know the number of solutions, say $t$ solutions among $N$ possibilities, a randomized algorithm will give a time complexity of $O(\frac{N}{t})$
+</section>
+
+<section data-markdown>
+### Grover's Algorithm
+> Given a set of $N$ elements forming a set $X = \\{ x_1, x_2, ..., x_N \\}$ and a boolean function  
+> $f: X \to \\{ 0,1 \\}$, find elements $x_i \in X$ such that $f(x_i) = 1$
+
+* To make the solution space easier to work with, first label the values $x_i \in X$ directly as $i - 1$, so
+$X = \\{0, 1, 2, ..., N - 1\\}$ and redefine $f$ so that $f(i - 1) = f(x_i)$ 
+* Also consider (WLOG) that $N = 2^n$
+
 </section>
 
 <section data-markdown>
