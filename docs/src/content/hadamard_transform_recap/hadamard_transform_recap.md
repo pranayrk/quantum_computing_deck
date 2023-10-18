@@ -1,7 +1,7 @@
 <section data-markdown>
 ### Hadamard Gate
-> The **Hadamard gate** $H$ acts on a single qubit and is represented by the Hadamard matrix 
-$H = \displaystyle\frac{1}{\sqrt{2}} \begin{bmatrix} 1 & 1 \\\\ 1 & -1 \end{bmatrix}$
+> The **Hadamard gate** $H$ acts on a single qubit and is represented by the Hadamard matrix  
+> $H = \displaystyle\frac{1}{\sqrt{2}} \begin{bmatrix} 1 & 1 \\\\ 1 & -1 \end{bmatrix}$
 
 * The Hadamard gate acts on $\ket{0}, \ket{1}$ as:
     * $H\ket{0} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) = \ket{+}$ 
