@@ -28,13 +28,13 @@ Note:
 
 Suppose that we are given a bit-oracle circuit $\boxed{U_f}$ and the ancilliary $\ket{y}$ is set to $\ket{-}$.
 
-Then the state of the input is $\ket{x}\otimes \ket{-}$. 
+Then the state of the input is $\ket{x}\otimes \ket{-} = \frac{1}{\sqrt{2}} (\ket{x0} - \ket{x1})$
 
-Consider the first case as $f(x) = 0$, then $U_f( \ket{x} \otimes \ket{-})$ leaves the state unchanged.
+*First case, $f(x) = 0$:* $U_f( \ket{x} \otimes \ket{-})$ leaves the state unchanged.
 
-Consider the second case as $f(x) = 1$, then $U_f(\ket{x} \otimes \ket{-}) =$
+*Second case, $f(x) = 1$:* $U_f(\ket{x} \otimes \ket{-}) =  \ket{x} \otimes \frac{1}{\sqrt{2}} (\ket{0 \oplus 1} - \ket{1 \oplus 1})$
 
-$ \ket{x} \otimes \frac{1}{\sqrt{2}} (\ket{0 \otimes 1} - \ket{1 \otimes 1}) = \ket{x} \otimes \frac{1}{\sqrt{2}} (\ket{1} - \ket{0}) = \frac{1}{\sqrt{2}} (\ket{x1} - \ket{x0})$ which is the negative of the input we started with
+$ = \ket{x} \otimes \frac{1}{\sqrt{2}} (\ket{1} - \ket{0}) = \frac{1}{\sqrt{2}} (\ket{x1} - \ket{x0})$
 
 $ \implies U_f(\ket{x} \otimes \ket{-}) = (-1)^{f(x)} (\ket{x} \otimes \ket{-})$ which is the action of the phase-oracle
 </section>

@@ -15,4 +15,5 @@
 Note:
 * Unstructured means we cannot use any clever tricks like binary search
 * Lov Grover designed this algorithm to be used for searching databases, where we need to match a certain query
+* Like finding a needle in a haystack
 </section>
