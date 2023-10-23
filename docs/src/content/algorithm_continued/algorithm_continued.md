@@ -44,18 +44,36 @@ $ = \frac{1}{2^{n/2}} \sum_{j=0}^{2^n-1} U_\pm (\ket{j}) = - \frac{1}{2^{n/2}} \
 
 The mean amplitude of the state $U_\pm(\ket\psi)$ before applying $D$ is 
 
-$\displaystyle \frac{\frac{-1}{2^{n/2}} + \frac{1}{2^{n/2}} (2^n -1) }{2^n} = \displaystyle \frac{(2^n - 2) \frac{1}{2^{n/2}}}{2^n} \approx \frac{2^n}{2^n} \frac{1}{2^{n/2}} = \frac{1}{2^{n/2}}$ for large $n$.
+$\displaystyle \frac{\frac{-1}{2^{n/2}} + \frac{1}{2^{n/2}} (2^n -1) }{2^n} = \displaystyle \frac{(2^n - 2) \frac{1}{2^{n/2}}}{2^n} \approx \frac{2^n}{2^n} \frac{1}{2^{n/2}} = \frac{1}{2^{n/2}} = \frac{1}{\sqrt{N}}$
 
-Therefore after reflection about $\ket\psi$, the amplitudes of most entries $\ket{j}$ where $j \neq k$ stays roughly the same.
+Therefore after reflection about $\ket\psi$, the amplitudes of most entries $\ket{j}$ where $j \neq k$ are slightly reduced but roughly the same.
 
-However, for the solution $k \in \\{0,1 \\}^n$, the entry of $\ket{k}$ will be reflected to an amplitude of $\displaystyle\frac{3}{2^{n/2}}$
+However, for the solution $k \in \\{0,1 \\}^n$, the entry of $\ket{k}$ will be reflected to an amplitude of $\displaystyle\frac{3}{2^{n/2}} = \frac{3}{\sqrt{N}}$
+
+---
+
+### Grover's Algorithm
+> The circuit for Grovers algorithm $\boxed{G}$ performs the operation given by the operator  
+> $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }} \cdot H^{\otimes n}$  
+
+
+After one application of $D U_\pm$, the amplitude of the solution component $\ket{k}$ will be $\displaystyle \frac{3}{\sqrt{N}}$   
+and the amplitude of the non-solution components will be sligtly less than $\displaystyle\frac{1}{\sqrt{N}}$
+
+If we apply $D U_\pm$ a second time, the amplitude of the solution component $\ket{k}$ will be $\displaystyle \frac{5}{\sqrt{N}}$ and the amplitude of the non-solutions will be even lower.
+
+So $p$ applications of $D U_\pm$ will result in the solution component having an amplitude of $\displaystyle\frac{2p + 1}{\sqrt{N}}$ and the non-solution components will reduce in amplitude with each application.
 
 ---
 ### Grover's Algorithm
 > The circuit for Grovers algorithm $\boxed{G}$ performs the operation given by the operator  
 > $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }} \cdot H^{\otimes n}$  
 
-$D (U_\pm \ket\psi) = D ( - \frac{1}{2^{n/2}} \ket{k} + \frac{1}{2^{n/2}} \sum_{j=0, j \neq k}^{2^n-1} \ket{j} )$
+
+Suppose we need to make the amplitude of the solution greater than a constant $A$.
+So we proceed to apply $D U_\pm$ a total of $\displaystyle \frac{A\sqrt{N}}{2}$ times (rounded up) we will get the solution component having an amplitude of $\displaystyle \frac{2 \frac{A\sqrt{N}}{2} + 1}{\sqrt{N}} > A$ and the non-solution components will have very low amplitude for large $N$.
+
+Since we repeat $D U_\pm$ a total of $\displaystyle \frac{A\sqrt{N}}{2}$ (rounded up), we see that Grover's algorithm has a time-complexity of $\frac{A}{2} \sqrt{N} \sim O(\sqrt{N})$
 
 
 

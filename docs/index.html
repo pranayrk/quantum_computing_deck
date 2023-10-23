@@ -169,15 +169,16 @@ Note:
 > We are tasked with finding that unique $x_i$
 
 * Consider without loss of generality that $N = 2^n$ for some $n \in \mathbb{N}$
-* To make the solution space easier to work with, notice we can label the values $x_i \in X$ directly as $i - 1$, so
-$X = \\{0, 1, 2, ..., N - 1\\}$ and also redefine $f$ so that $f(i - 1)$ will have the same value as the original $f(x_i)$ 
-* Grover's algorithm relies on a black box which we wrap in an *oracle*
+* Let each $x_i \in \\{ x_1, x_2, ..., x_N \\}$ correspond to the basis vector $\ket{i-1}$ in a quantum state space with basis vectors $\\{\ket{0}, \ket{1}, ..., \ket{N-1} \\}$
+* Since $N = 2^n$, we will need to use an $n$-qubit register to achieve a suitable corresponding basis.
+* Grover's algorithm relies on a black box circuit which tells us whether a particular $x_i$ is a solution
+* We wrap this black box in a *quantum oracle* which takes a quantum state as input and can tell us whether a given basis vector $\ket{i}$ is a solution.
 
 </section>
 
 <section data-markdown>
 ### Oracle
-> We are given a set of $N$ distinct elements forming a set $X = \\{ 0, 1, ..., 2^n-1 \\}$ and a boolean function $f: X \to \\{ 0,1 \\}$ with $f(x) = 1$ for *exactly one* $x \in X$
+> We are given a set of $N$ distinct elements forming a set $X = \\{ 0, 1, ..., 2^n-1 \\}$ and a boolean function $f: X \to \\{ 0,1 \\}$ with $f(x) = 1$ for *exactly one* $x_i \in X$
 
 * Consider we have access to a classical circuit $\boxed{O_c}$ which takes input of $x \in X$ as a binary string, i.e. $x \in \\{0,1\\}^n$, and outputs $f(x)$</li>
 * Since we have possible values of $x$ from $0$ to $2^n-1$, we will need an $n$-bit binary string as input to $\boxed{O_c}$</li>
@@ -186,17 +187,17 @@ $X = \\{0, 1, 2, ..., N - 1\\}$ and also redefine $f$ so that $f(i - 1)$ will ha
 </section>
 <section data-markdown>
 ### Oracle
-> We are given a set of $N$ distinct elements forming a set $X = \\{ 0, 1, ..., 2^n-1 \\}$ and a boolean function $f: X \to \\{ 0,1 \\}$ with $f(x) = 1$ for *exactly one* $x \in X$
+> We are given a set of $N$ distinct elements forming a set $X = \\{ 0, 1, ..., 2^n-1 \\}$ and a boolean function $f: X \to \\{ 0,1 \\}$ with $f(x) = 1$ for *exactly one* $x_i \in X$
 
 * One way of rectifying this is by constructing a bit-oracle circuit $\boxed{U_f}$ in such a way that it has equal number of inputs and outputs. Also the circuit should be invertible.
 * We define $\boxed{U_f}$ as the circuit such that $U_f(\ket{x}\ket{y}) = \ket{x}\ket{y \oplus f(x)}$ where $\oplus$ denotes addition modulo 2 and $\ket{y}$ is an extra ancilliary qubit given to hold the output.
-* Note that we are not concerned with the exact implementation of $\boxed{U_f}$ and leave it as a black-box which we expect is provided to us
-
-Note: 
-* To show $U_f$ is unitary and reversible, check https://people.vcu.edu/~sgharibian/courses/CMSC491/notes/Lecture%206%20-%20Deutsch%27s%20algorithm.pdf 
+* We are not concerned with the exact implementation of $\boxed{U_f}$ and think of it it as a black-box which we expect is provided to us
+* To show $U_f$ is unitary and reversible, check [Sevag Gharibian's Lecture on Deutsch Algorithm, Section 1](https://people.vcu.edu/~sgharibian/courses/CMSC491/notes/Lecture%206%20-%20Deutsch%27s%20algorithm.pdf)
 </section>
 <section data-markdown>
 ### Oracle
+> Given a bit-oracle circuit $\boxed{U_f}$ we can construct the phase-oracle $\boxed{U_\pm}$
+
 * The circuit for $\boxed{U_f}$ has extra output qubit $\ket{y}$ to handle, this can be simplified to an $n$-qubit circuit.
 * The approach for this is to construct a phase-oracle $\boxed{U_\pm}$ such that $U_\pm \ket{x} = \begin{cases} \ket{x} & \text{ if } f(x) = 0 \\\\ -\ket{x} & \text{ if } f(x) = 1 \end{cases} = (-1)^{f(x)} \ket{x}$
 ---
@@ -262,32 +263,100 @@ $ = \frac{1}{2^{n/2}} \sum_{j=0}^{2^n-1} U_\pm (\ket{j}) = - \frac{1}{2^{n/2}} \
 
 The mean amplitude of the state $U_\pm(\ket\psi)$ before applying $D$ is 
 
-$\displaystyle \frac{\frac{-1}{2^{n/2}} + \frac{1}{2^{n/2}} (2^n -1) }{2^n} = \displaystyle \frac{(2^n - 2) \frac{1}{2^{n/2}}}{2^n} \approx \frac{2^n}{2^n} \frac{1}{2^{n/2}} = \frac{1}{2^{n/2}}$ for large $n$.
+$\displaystyle \frac{\frac{-1}{2^{n/2}} + \frac{1}{2^{n/2}} (2^n -1) }{2^n} = \displaystyle \frac{(2^n - 2) \frac{1}{2^{n/2}}}{2^n} \approx \frac{2^n}{2^n} \frac{1}{2^{n/2}} = \frac{1}{2^{n/2}} = \frac{1}{\sqrt{N}}$
 
-Therefore after reflection about $\ket\psi$, the amplitudes of most entries $\ket{j}$ where $j \neq k$ stays roughly the same.
+Therefore after reflection about $\ket\psi$, the amplitudes of most entries $\ket{j}$ where $j \neq k$ are slightly reduced but roughly the same.
 
-However, for the solution $k \in \\{0,1 \\}^n$, the entry of $\ket{k}$ will be reflected to an amplitude of $\displaystyle\frac{3}{2^{n/2}}$
+However, for the solution $k \in \\{0,1 \\}^n$, the entry of $\ket{k}$ will be reflected to an amplitude of $\displaystyle\frac{3}{2^{n/2}} = \frac{3}{\sqrt{N}}$
+
+---
+
+### Grover's Algorithm
+> The circuit for Grovers algorithm $\boxed{G}$ performs the operation given by the operator  
+> $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }} \cdot H^{\otimes n}$  
+
+
+After one application of $D U_\pm$, the amplitude of the solution component $\ket{k}$ will be $\displaystyle \frac{3}{\sqrt{N}}$   
+and the amplitude of the non-solution components will be sligtly less than $\displaystyle\frac{1}{\sqrt{N}}$
+
+If we apply $D U_\pm$ a second time, the amplitude of the solution component $\ket{k}$ will be $\displaystyle \frac{5}{\sqrt{N}}$ and the amplitude of the non-solutions will be even lower.
+
+So $p$ applications of $D U_\pm$ will result in the solution component having an amplitude of $\displaystyle\frac{2p + 1}{\sqrt{N}}$ and the non-solution components will reduce in amplitude with each application.
 
 ---
 ### Grover's Algorithm
 > The circuit for Grovers algorithm $\boxed{G}$ performs the operation given by the operator  
 > $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }} \cdot H^{\otimes n}$  
 
-$D (U_\pm \ket\psi) = D ( - \frac{1}{2^{n/2}} \ket{k} + \frac{1}{2^{n/2}} \sum_{j=0, j \neq k}^{2^n-1} \ket{j} )$
+
+Suppose we need to make the amplitude of the solution greater than a constant $A$.
+So we proceed to apply $D U_\pm$ a total of $\displaystyle \frac{A\sqrt{N}}{2}$ times (rounded up) we will get the solution component having an amplitude of $\displaystyle \frac{2 \frac{A\sqrt{N}}{2} + 1}{\sqrt{N}} > A$ and the non-solution components will have very low amplitude for large $N$.
+
+Since we repeat $D U_\pm$ a total of $\displaystyle \frac{A\sqrt{N}}{2}$ (rounded up), we see that Grover's algorithm has a time-complexity of $\frac{A}{2} \sqrt{N} \sim O(\sqrt{N})$
 
 
 
 </section>
 
 <section data-markdown>
-### Gate Complexity
-`Refer O'Donnell P11`
-</section>
+### Amplitude Amplification Algorithm
+> We are given a set of $N = 2^n$ distinct elements forming a set $X = \\{ x_1, x_2, ..., x_N \\}$
+> and a boolean function $f: X \to \\{ 0,1 \\}$ with $f(x) = 1$ for *some* $x_i \in X$.   
+> Given each $x_i$ corresponds to a basis element $\ket{i-1}$ of a quantum state space with basis $\\{\ket{0},\ket{1}, ...,\ket{N} \\}$, we want to bring the state space close to a uniform superposition of the basis vectors for which the corresponding $x_i$ satisfies $f(x_i) = 1$
 
-<section data-markdown>
-### Analysis
-* Time Complexity Analysis
-* Gate Complexity Analysis
+* Generalization of Grover's original algorithm where there are multiple possible solutions in the solution space
+* More precisely, Grover's original algorithm belongs to what we now call the class of amplitude amplification algorithms
+* This finds use as a subroutine in many other quantum algorithms either to prepare the input as an equal superposition of certain basis states or to emphasize the effect of certain basis states
+---
+### Amplitude Amplification Algorithm
+> Given a quantum state space of an $n$-qubit register with basis $\mathscr{B} = \\{\ket{0}, \ket{1}, ..., \ket{2^n-1} \\}$, and a subbasis $\mathscr{B}'$. 
+> To bring the state of the register close to a superposition of basis vectors in $\mathscr{B}'$,
+> we apply the algorithm $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }}$ to any initial state $\ket{\psi}$
+
+* $U_\pm \ket{x} = \begin{cases} \ket{x} & \text{ if } f(x) \text{ is not a solution } \\\\ -\ket{x} & \text{ if } f(x) \text{ is a solution } \end{cases} = (-1)^{f(x)} \ket{x}$
+* $U_\pm$ puts a negative sign for all $\ket{i}$ in the good state and none of $\ket{i}$ in the bad state
+* $D = 2 \ket\psi \bra\psi - I$ and is normally written as $H^{\otimes n} (2 \ket{0}\bra{0} - I) H^{\otimes n}$ in most sources
+
+---
+### Amplitude Amplification Algorithm
+> Given a quantum state space of an $n$-qubit register with basis $\mathscr{B} = \\{\ket{0}, \ket{1}, ..., \ket{2^n-1} \\}$, and a subbasis $\mathscr{B}'$. 
+> To bring the state of the register close to a superposition of basis vectors in $\mathscr{B}'$,
+> we apply the algorithm $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }}$ to any initial state $\ket{\phi}$
+
+
+* We call the equal superposition of basis vectors in $\mathscr{B}'$ as the good state $\ket{G}$ and the superposition of vectors in $\mathscr{B} - \mathscr{B}'$ as the bad state $\ket{B}$.
+* Clearly, $\ket{G}$ and $\ket{B}$ are orthonormal
+* The analysis of the amplitude amplification algorithm can be done purely in a 2-d vector space, i.e. the vector space spanned by the basis $\\{ \ket{G}, \ket{B} \\}$.
+
+---
+### Amplitude Amplification Algorithm
+> Given a quantum state space of an $n$-qubit register with basis $\mathscr{B} = \\{\ket{0}, \ket{1}, ..., \ket{2^n-1} \\}$, and a subbasis $\mathscr{B}'$. 
+> To bring the state of the register close to a superposition of basis vectors in $\mathscr{B}'$,
+> we apply the algorithm $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }}$ to any initial state $\ket{\phi}$
+
+Let there be $M$ solutions out out $N = 2^n$ possibilities. Let those $M$ solutions be known as *marked states*.
+
+Then $\ket{G} = \displaystyle \frac{1}{\sqrt{M}} \sum_{i \text{ is marked }} \ket{i}$ and $\ket{B} = \displaystyle \frac{1}{\sqrt{N-M}} \sum_{i \text{ is unmarked }} \ket{i}$
+
+Then a state $\ket\phi$ can be uniquely decomposed as $\ket\phi = \sin\theta \ket{G} + \cos\theta \ket{B}$
+
+Assume for simplicity that $\ket{\phi} = \ket{\psi}$ is the uniform superposition state. For analysis on a general state $\ket{\phi}$ check the [Wikipedia article, Algorithm section](https://en.wikipedia.org/wiki/Amplitude_amplification).
+
+---
+### Amplitude Amplification Algorithm
+> Given a quantum state space of an $n$-qubit register with basis $\mathscr{B} = \\{\ket{0}, \ket{1}, ..., \ket{2^n-1} \\}$, and a subbasis $\mathscr{B}'$. 
+> To bring the state of the register close to a superposition of basis vectors in $\mathscr{B}'$,
+> we apply the algorithm $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }}$ to any initial state $\ket{\phi}$
+
+$\ket\psi = \sin\theta \ket{G} + \cos\theta \ket{B}$ and  
+$\ket\psi = \displaystyle \frac{\sqrt{M}}{\sqrt{N}} \ket{G} + \frac{\sqrt{N - M}}{\sqrt{N}} \ket{B}$
+$\implies \theta = \arcsin(\frac{\sqrt{M}}{\sqrt{N}})$
+
+For $M \ll N$, $\theta \approx \frac{\sqrt{M}}{\sqrt{N}}$
+
+The phase oracle $U_\pm$ can be thought of as a reflection of the state of the register about $\ket{B}$.
+$D$ is a reflection about the uniformly distributed state.
+
 </section>
 
 <section data-markdown>

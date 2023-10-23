@@ -5,8 +5,9 @@
 > We are tasked with finding that unique $x_i$
 
 * Consider without loss of generality that $N = 2^n$ for some $n \in \mathbb{N}$
-* To make the solution space easier to work with, notice we can label the values $x_i \in X$ directly as $i - 1$, so
-$X = \\{0, 1, 2, ..., N - 1\\}$ and also redefine $f$ so that $f(i - 1)$ will have the same value as the original $f(x_i)$ 
-* Grover's algorithm relies on a black box which we wrap in an *oracle*
+* Let each $x_i \in \\{ x_1, x_2, ..., x_N \\}$ correspond to the basis vector $\ket{i-1}$ in a quantum state space with basis vectors $\\{\ket{0}, \ket{1}, ..., \ket{N-1} \\}$
+* Since $N = 2^n$, we will need to use an $n$-qubit register to achieve a suitable corresponding basis.
+* Grover's algorithm relies on a black box circuit which tells us whether a particular $x_i$ is a solution
+* We wrap this black box in a *quantum oracle* which takes a quantum state as input and can tell us whether a given basis vector $\ket{i}$ is a solution.
 
 </section>
