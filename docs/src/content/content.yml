@@ -9,9 +9,7 @@ map:
   - algorithm_summary
   - oracle
   - algorithm_continued
-    # - optimality
-    #  - grover_gate_complexity
   - amplitude_amplification
-    # - analysis
+    #- optimality
     # - applications
   - resources

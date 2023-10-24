@@ -8,6 +8,8 @@
     * $H\ket{1} = \frac{1}{\sqrt{2}} (\ket{0} - \ket{1}) = \ket{-}$
 * The Hadamard gate is self inverse, $H H = I$
 
+![hadamard](media/hadamard.png)
+
 Note:
 * Creates an equal superposition of the basis states
 * The conjugate transponse of $H$ is $H$ itself, so to check it is unitary, we only need to check $HH = I$
@@ -23,5 +25,5 @@ $H^{\otimes n} \ket{0}^n  = \underbrace{(H \ket{0}) \otimes (H \ket{0}) \otimes 
 
 $= \underbrace{\frac{1}{2^{n/2}} (\ket{0} + \ket{1}) \otimes (\ket{0} + \ket{1}) \otimes (\ket{0} + \ket{1}) ... \otimes (\ket{0} + \ket{1})}_{n \text{ times }}$ 
 
-$= \displaystyle\frac{1}{2^{n/2}} \sum_{j=0}^{2^n -1} \ket{j} \text{ where $\ket{j}$ is the bitstring that represents $j$ in binary}$
+$= \displaystyle\frac{1}{2^{n/2}} \sum_{j=0}^{2^n -1} \ket{j}$
 </section>

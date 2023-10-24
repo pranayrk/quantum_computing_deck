@@ -34,11 +34,13 @@ Jaipur
 
 <section data-markdown>
 ### Key Points
-* Devised by Lov Kumar Grover in 1996
-* One of the most famous quantum algorithm second to only Shor's algorithm
-* Does not have as impressive of a speedup as Shor's but is applicable to a broader range of problems
-* Targets an unstructured search problem and finds the solution with high probability
-* Original paper introduces it as a database search algorithm but it finds limited use in this case
+* Published by Lov Kumar Grover in 1996
+* One of the most famous quantum algorithms
+* Targets an unstructured search problem
+* Does not have as impressive of a speedup as Shor's
+* Applicable to a broader range of problems than Shor's
+* Finds the solution with high probability in quadratic time
+* Original paper introduces it as a database search algorithm
 
 Note:
 * Shor's has an exponential speedup while Grover's has only quadratic speedup
@@ -70,6 +72,8 @@ Note:
     * $H\ket{1} = \frac{1}{\sqrt{2}} (\ket{0} - \ket{1}) = \ket{-}$
 * The Hadamard gate is self inverse, $H H = I$
 
+![hadamard](media/hadamard.png)
+
 Note:
 * Creates an equal superposition of the basis states
 * The conjugate transponse of $H$ is $H$ itself, so to check it is unitary, we only need to check $HH = I$
@@ -85,7 +89,7 @@ $H^{\otimes n} \ket{0}^n  = \underbrace{(H \ket{0}) \otimes (H \ket{0}) \otimes 
 
 $= \underbrace{\frac{1}{2^{n/2}} (\ket{0} + \ket{1}) \otimes (\ket{0} + \ket{1}) \otimes (\ket{0} + \ket{1}) ... \otimes (\ket{0} + \ket{1})}_{n \text{ times }}$ 
 
-$= \displaystyle\frac{1}{2^{n/2}} \sum_{j=0}^{2^n -1} \ket{j} \text{ where $\ket{j}$ is the bitstring that represents $j$ in binary}$
+$= \displaystyle\frac{1}{2^{n/2}} \sum_{j=0}^{2^n -1} \ket{j}$
 </section>
 
 <section data-markdown>
@@ -169,7 +173,7 @@ Note:
 > We are tasked with finding that unique $x_i$
 
 * Consider without loss of generality that $N = 2^n$ for some $n \in \mathbb{N}$
-* Let each $x_i \in \\{ x_1, x_2, ..., x_N \\}$ correspond to the basis vector $\ket{i-1}$ in a quantum state space with basis vectors $\\{\ket{0}, \ket{1}, ..., \ket{N-1} \\}$
+* Let each $x_i \in \\{ x_1, x_2, ..., x_N \\}$ correspond to the basis vector $\ket{i-1}$ in a quantum state space with basis vectors $\\{\ket{0}, \ket{1}, ..., \ket{2^n-1} \\}$
 * Since $N = 2^n$, we will need to use an $n$-qubit register to achieve a suitable corresponding basis.
 * Grover's algorithm relies on a black box circuit which tells us whether a particular $x_i$ is a solution
 * We wrap this black box in a *quantum oracle* which takes a quantum state as input and can tell us whether a given basis vector $\ket{i}$ is a solution.
@@ -239,11 +243,10 @@ Let $k \in \\{ 0, 1 \\}^n$ be the required solution.
 
 We will require the $n$-qubit register to be very close to the state $\ket{k} \in \ket{0}, ..., \ket{2^n-1}$.
 
-Applying the Hadamard gate on $\ket{0}^n$, we get the register in the average state  
- $\ket\psi = H^{\otimes n} \ket{0}^n = \frac{1}{2^{n/2}} \sum_{i=0}^{2^n-1}\ket{j}$
+Applying the Hadamard gate on $\ket{0}^n$, we get the register in the *average state*  
+$\ket\psi = H^{\otimes n} \ket{0}^n = \displaystyle \frac{1}{2^{n/2}} \sum_{i=0}^{2^n-1}\ket{j}$
 
-Applying $U_\pm$ on this average state $\ket\psi$, we get  
- $U_\pm(\ket\psi) = U_\pm (\frac{1}{2^{n/2}} \sum_{j=0}^{2^n - 1} \ket{j}) $ 
+Applying $U_\pm$ on this average state $\ket\psi$, we get $U_\pm(\ket\psi) = U_\pm (\frac{1}{2^{n/2}} \sum_{j=0}^{2^n - 1} \ket{j}) $ 
 
 $ = \frac{1}{2^{n/2}} \sum_{j=0}^{2^n-1} U_\pm (\ket{j}) = - \frac{1}{2^{n/2}} \ket{k} + \frac{1}{2^{n/2}} \sum_{j=0, j \neq k}^{2^n-1} \ket{j}$
 
@@ -252,9 +255,16 @@ $ = \frac{1}{2^{n/2}} \sum_{j=0}^{2^n-1} U_\pm (\ket{j}) = - \frac{1}{2^{n/2}} \
 > The circuit for Grovers algorithm $\boxed{G}$ performs the operation given by the operator  
 > $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }} \cdot H^{\otimes n}$  
 
-* Grover's diffusion operator $D$ in the above algorithm is a gate which reflects any current state $\ket{\phi}$ of the $n$-qubit register about the axis of the average state   
-   $\ket{\psi} = \frac{1}{2^{n/2}} \sum_{i=0}^{2^n-1}\ket{j}$
+![after_upm](media/after_upm.png)
+
+---
+### Grover's Algorithm
+> The circuit for Grovers algorithm $\boxed{G}$ performs the operation given by the operator  
+> $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }} \cdot H^{\otimes n}$  
+
+* Grover's diffusion operator $D$ in the above algorithm is a gate which reflects any state $\ket{\phi}$ about the axis of the average state $\ket{\psi} = \frac{1}{2^{n/2}} \sum_{i=0}^{2^n-1}\ket{j}$
 * We can represent the operation of $D$ as $D = 2 \ket\psi\bra\psi - I$
+* [Grover's paper, Page 5](https://arxiv.org/pdf/quant-ph/9605043.pdf) has details on how to construct $D$ from Hadamard Gates and Rotation Gates
 
 ---
 ### Grover's Algorithm
@@ -265,9 +275,19 @@ The mean amplitude of the state $U_\pm(\ket\psi)$ before applying $D$ is
 
 $\displaystyle \frac{\frac{-1}{2^{n/2}} + \frac{1}{2^{n/2}} (2^n -1) }{2^n} = \displaystyle \frac{(2^n - 2) \frac{1}{2^{n/2}}}{2^n} \approx \frac{2^n}{2^n} \frac{1}{2^{n/2}} = \frac{1}{2^{n/2}} = \frac{1}{\sqrt{N}}$
 
-Therefore after reflection about $\ket\psi$, the amplitudes of most entries $\ket{j}$ where $j \neq k$ are slightly reduced but roughly the same.
+Therefore after reflection about $\ket\psi$, the amplitudes of most entries $\ket{j}$ where $j \neq k$ are slightly   
+reduced but roughly the same.
 
-However, for the solution $k \in \\{0,1 \\}^n$, the entry of $\ket{k}$ will be reflected to an amplitude of $\displaystyle\frac{3}{2^{n/2}} = \frac{3}{\sqrt{N}}$
+However, for the solution $k \in \\{0,1 \\}^n$, the entry of $\ket{k}$ will be reflected to an  
+ amplitude of $\displaystyle\frac{3}{2^{n/2}} = \frac{3}{\sqrt{N}}$
+
+---
+### Grover's Algorithm
+> The circuit for Grovers algorithm $\boxed{G}$ performs the operation given by the operator  
+> $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }} \cdot H^{\otimes n}$  
+
+![after_diffusion](media/after_diffusion.png)
+
 
 ---
 
@@ -289,8 +309,10 @@ So $p$ applications of $D U_\pm$ will result in the solution component having an
 > $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }} \cdot H^{\otimes n}$  
 
 
-Suppose we need to make the amplitude of the solution greater than a constant $A$.
-So we proceed to apply $D U_\pm$ a total of $\displaystyle \frac{A\sqrt{N}}{2}$ times (rounded up) we will get the solution component having an amplitude of $\displaystyle \frac{2 \frac{A\sqrt{N}}{2} + 1}{\sqrt{N}} > A$ and the non-solution components will have very low amplitude for large $N$.
+Suppose we need to make the amplitude of the solution greater than a constant $A$.  
+We proceed to apply $D U_\pm$ a total of $\displaystyle \frac{A\sqrt{N}}{2}$ times (rounded up). 
+
+We will get the solution component having an amplitude of $\displaystyle \frac{2 \frac{A\sqrt{N}}{2} + 1}{\sqrt{N}} > A$ and the non-solution components will have very low amplitude for large $N$.
 
 Since we repeat $D U_\pm$ a total of $\displaystyle \frac{A\sqrt{N}}{2}$ (rounded up), we see that Grover's algorithm has a time-complexity of $\frac{A}{2} \sqrt{N} \sim O(\sqrt{N})$
 
@@ -325,8 +347,8 @@ Since we repeat $D U_\pm$ a total of $\displaystyle \frac{A\sqrt{N}}{2}$ (rounde
 
 
 * We call the equal superposition of basis vectors in $\mathscr{B}'$ as the good state $\ket{G}$ and the superposition of vectors in $\mathscr{B} - \mathscr{B}'$ as the bad state $\ket{B}$.
-* Clearly, $\ket{G}$ and $\ket{B}$ are orthonormal
-* The analysis of the amplitude amplification algorithm can be done purely in a 2-d vector space, i.e. the vector space spanned by the basis $\\{ \ket{G}, \ket{B} \\}$.
+* The analysis of the amplitude amplification algorithm can be done fully in the 2-d vector space spanned by the basis $\\{ \ket{G}, \ket{B} \\}$.
+* Clearly, $\ket{G}$ and $\ket{B}$ are orthogonal, i.e. $\ket{B}$ is an angle $\displaystyle \frac{\pi}{2}$ away from $\ket{G}$ in this vector space
 
 ---
 ### Amplitude Amplification Algorithm
@@ -334,7 +356,10 @@ Since we repeat $D U_\pm$ a total of $\displaystyle \frac{A\sqrt{N}}{2}$ (rounde
 > To bring the state of the register close to a superposition of basis vectors in $\mathscr{B}'$,
 > we apply the algorithm $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }}$ to any initial state $\ket{\phi}$
 
-Let there be $M$ solutions out out $N = 2^n$ possibilities. Let those $M$ solutions be known as *marked states*.
+
+Let there be $M$ solutions out out $N = 2^n$ possibilities. 
+
+Let those $M$ solutions be known as *marked states*.
 
 Then $\ket{G} = \displaystyle \frac{1}{\sqrt{M}} \sum_{i \text{ is marked }} \ket{i}$ and $\ket{B} = \displaystyle \frac{1}{\sqrt{N-M}} \sum_{i \text{ is unmarked }} \ket{i}$
 
@@ -354,13 +379,53 @@ $\implies \theta = \arcsin(\frac{\sqrt{M}}{\sqrt{N}})$
 
 For $M \ll N$, $\theta \approx \frac{\sqrt{M}}{\sqrt{N}}$
 
-The phase oracle $U_\pm$ can be thought of as a reflection of the state of the register about $\ket{B}$.
-$D$ is a reflection about the uniformly distributed state.
+The phase oracle $U_\pm$ can be thought of as a reflection of the state of the register around $\ket{B}$
+
+$D$ is a reflection about the uniformly distributed state $\ket\psi$. 
+
+So for each iteration, we have two rotations in the $\ket{G}$ - $\ket{B}$ plane
+
+---
+### Amplitude Amplification Algorithm
+![amplitude](media/amplitude.png)
+
+
+---
+### Amplitude Amplification Algorithm
+> Given a quantum state space of an $n$-qubit register with basis $\mathscr{B} = \\{\ket{0}, \ket{1}, ..., \ket{2^n-1} \\}$, and a subbasis $\mathscr{B}'$. 
+> To bring the state of the register close to a superposition of basis vectors in $\mathscr{B}'$,
+> we apply the algorithm $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }}$ to any initial state $\ket{\phi}$
+
+
+In each iteration, the state of the register will be rotated towards $\ket{G}$ by an angle of $2 \theta \approx 2 \frac{\sqrt{M}}{\sqrt{N}}$. 
+
+Since the register was initially set at an angle $\theta$ from $\ket{B}$, the state of the register after $k$ iterations will be at an angle $(2k + 1) \theta$ away from $\ket{B}$
+
+If the number of solutions are small, i.e. $M \ll N$, then the starting state will be very close to $\ket{B}$, i.e. we will need to rotate the state by almost an angle of $\frac{\pi}{2}$ to reach $\ket{G}$
+
+So performing $k$ iterations to get to $\displaystyle \frac{\pi}{2}$ away from $\ket{B}$,  
+$(2k+1)\theta = \displaystyle \frac{\pi}{2} \implies$ we will require $k = \displaystyle  \frac{1}{2} \left (   \frac{\pi}{2 \theta} - 1 \right )$ iterations.
+
+
+---
+### Amplitude Amplification Algorithm
+> Given a quantum state space of an $n$-qubit register with basis $\mathscr{B} = \\{\ket{0}, \ket{1}, ..., \ket{2^n-1} \\}$, and a subbasis $\mathscr{B}'$. 
+> To bring the state of the register close to a superposition of basis vectors in $\mathscr{B}'$,
+> we apply the algorithm $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }}$ to any initial state $\ket{\phi}$
+
+Therefore around $\displaystyle  \frac{1}{2} \left (   \frac{\pi}{2 \theta} - 1 \right )$ (rounded up or down) iterations are required. This is the complexity of the Amplitude Amplification algorithm when the number of solutions $M$ is known.
+
+Some particular cases $M$ lead to interesting results. Consider the case when $M$ is exactly $25%$ of the total number of possible solutions $N$, i.e. $M = \displaystyle \frac{1}{4} N$. Therefore $\theta \approx \displaystyle \frac{\sqrt{M}}{\sqrt{N}} = \frac{\sqrt{\frac{1}{4}N}}{\sqrt{N}} = \frac{1}{2}$
+
+Then to reach the good state $\ket{G}$, we will need $\displaystyle  \frac{1}{2} \left (   \frac{\pi}{2 \theta} - 1 \right ) \approx 1$ iterations, i.e we find all the solutions in one call to the black box.
 
 </section>
 
+
 <section data-markdown>
-### References
+### Resources
+* A fast quantum mechanical algorithm for database search, Lov K. Grover [Paper ~ 1996](https://arxiv.org/abs/quant-ph/9605043)
+* Quantum Amplitude Amplification and Estimation, Brassard & Hoyer [Paper ~ 2000](https://arxiv.org/abs/quant-ph/0005055)
 * Shor's Lecture Notes on [Grover's Algorithm](https://math.mit.edu/~shor/435-LN/Lecture_24.pdf) and [Proof of Optimality](https://math.mit.edu/~shor/435-LN/Lecture_25.pdf)
 * Ryan O’Donnell Lecture Notes on [Grover's Algorithm](https://www.cs.cmu.edu/~odonnell/quantum15/lecture04.pdf)
 * John Watrous Lecture Notes on [Grover's Algorithm](https://cs.uwaterloo.ca/~watrous/QC-notes/QC-notes.12.pdf) and [Analysis](https://cs.uwaterloo.ca/~watrous/QC-notes/QC-notes.13.pdf)

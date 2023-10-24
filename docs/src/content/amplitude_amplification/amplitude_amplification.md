@@ -25,8 +25,8 @@
 
 
 * We call the equal superposition of basis vectors in $\mathscr{B}'$ as the good state $\ket{G}$ and the superposition of vectors in $\mathscr{B} - \mathscr{B}'$ as the bad state $\ket{B}$.
-* Clearly, $\ket{G}$ and $\ket{B}$ are orthonormal
-* The analysis of the amplitude amplification algorithm can be done purely in a 2-d vector space, i.e. the vector space spanned by the basis $\\{ \ket{G}, \ket{B} \\}$.
+* The analysis of the amplitude amplification algorithm can be done fully in the 2-d vector space spanned by the basis $\\{ \ket{G}, \ket{B} \\}$.
+* Clearly, $\ket{G}$ and $\ket{B}$ are orthogonal, i.e. $\ket{B}$ is an angle $\displaystyle \frac{\pi}{2}$ away from $\ket{G}$ in this vector space
 
 ---
 ### Amplitude Amplification Algorithm
@@ -34,7 +34,10 @@
 > To bring the state of the register close to a superposition of basis vectors in $\mathscr{B}'$,
 > we apply the algorithm $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }}$ to any initial state $\ket{\phi}$
 
-Let there be $M$ solutions out out $N = 2^n$ possibilities. Let those $M$ solutions be known as *marked states*.
+
+Let there be $M$ solutions out out $N = 2^n$ possibilities. 
+
+Let those $M$ solutions be known as *marked states*.
 
 Then $\ket{G} = \displaystyle \frac{1}{\sqrt{M}} \sum_{i \text{ is marked }} \ket{i}$ and $\ket{B} = \displaystyle \frac{1}{\sqrt{N-M}} \sum_{i \text{ is unmarked }} \ket{i}$
 
@@ -54,7 +57,45 @@ $\implies \theta = \arcsin(\frac{\sqrt{M}}{\sqrt{N}})$
 
 For $M \ll N$, $\theta \approx \frac{\sqrt{M}}{\sqrt{N}}$
 
-The phase oracle $U_\pm$ can be thought of as a reflection of the state of the register about $\ket{B}$.
-$D$ is a reflection about the uniformly distributed state.
+The phase oracle $U_\pm$ can be thought of as a reflection of the state of the register around $\ket{B}$
+
+$D$ is a reflection about the uniformly distributed state $\ket\psi$. 
+
+So for each iteration, we have two rotations in the $\ket{G}$ - $\ket{B}$ plane
+
+---
+### Amplitude Amplification Algorithm
+![amplitude](media/amplitude.png)
+
+
+---
+### Amplitude Amplification Algorithm
+> Given a quantum state space of an $n$-qubit register with basis $\mathscr{B} = \\{\ket{0}, \ket{1}, ..., \ket{2^n-1} \\}$, and a subbasis $\mathscr{B}'$. 
+> To bring the state of the register close to a superposition of basis vectors in $\mathscr{B}'$,
+> we apply the algorithm $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }}$ to any initial state $\ket{\phi}$
+
+
+In each iteration, the state of the register will be rotated towards $\ket{G}$ by an angle of $2 \theta \approx 2 \frac{\sqrt{M}}{\sqrt{N}}$. 
+
+Since the register was initially set at an angle $\theta$ from $\ket{B}$, the state of the register after $k$ iterations will be at an angle $(2k + 1) \theta$ away from $\ket{B}$
+
+If the number of solutions are small, i.e. $M \ll N$, then the starting state will be very close to $\ket{B}$, i.e. we will need to rotate the state by almost an angle of $\frac{\pi}{2}$ to reach $\ket{G}$
+
+So performing $k$ iterations to get to $\displaystyle \frac{\pi}{2}$ away from $\ket{B}$,  
+$(2k+1)\theta = \displaystyle \frac{\pi}{2} \implies$ we will require $k = \displaystyle  \frac{1}{2} \left (   \frac{\pi}{2 \theta} - 1 \right )$ iterations.
+
+
+---
+### Amplitude Amplification Algorithm
+> Given a quantum state space of an $n$-qubit register with basis $\mathscr{B} = \\{\ket{0}, \ket{1}, ..., \ket{2^n-1} \\}$, and a subbasis $\mathscr{B}'$. 
+> To bring the state of the register close to a superposition of basis vectors in $\mathscr{B}'$,
+> we apply the algorithm $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }}$ to any initial state $\ket{\phi}$
+
+Therefore around $\displaystyle  \frac{1}{2} \left (   \frac{\pi}{2 \theta} - 1 \right )$ (rounded up or down) iterations are required. This is the complexity of the Amplitude Amplification algorithm when the number of solutions $M$ is known.
+
+Some particular cases $M$ lead to interesting results. Consider the case when $M$ is exactly $25%$ of the total number of possible solutions $N$, i.e. $M = \displaystyle \frac{1}{4} N$. Therefore $\theta \approx \displaystyle \frac{\sqrt{M}}{\sqrt{N}} = \frac{\sqrt{\frac{1}{4}N}}{\sqrt{N}} = \frac{1}{2}$
+
+Then to reach the good state $\ket{G}$, we will need $\displaystyle  \frac{1}{2} \left (   \frac{\pi}{2 \theta} - 1 \right ) \approx 1$ iterations, i.e we find all the solutions in one call to the black box.
 
 </section>
+
