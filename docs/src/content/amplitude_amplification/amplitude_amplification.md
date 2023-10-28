@@ -2,7 +2,7 @@
 ### Amplitude Amplification Algorithm
 > We are given a set of $N = 2^n$ distinct elements forming a set $X = \\{ x_1, x_2, ..., x_N \\}$
 > and a boolean function $f: X \to \\{ 0,1 \\}$ with $f(x) = 1$ for *some* $x_i \in X$.   
-> Given each $x_i$ corresponds to a basis element $\ket{i-1}$ of a quantum state space with basis $\\{\ket{0},\ket{1}, ...,\ket{N} \\}$, we want to bring the state space close to a uniform superposition of the basis vectors for which the corresponding $x_i$ satisfies $f(x_i) = 1$
+> Given each $x_i$ corresponds to a basis element $\ket{i-1}$ of a quantum state space with basis $\\{\ket{0},\ket{1}, ...,\ket{2^n - 1} \\}$, we want to bring the state space close to a uniform superposition of the basis vectors for which the corresponding $x_i$ satisfies $f(x_i) = 1$
 
 * Generalization of Grover's original algorithm where there are multiple possible solutions in the solution space
 * More precisely, Grover's original algorithm belongs to what we now call the class of amplitude amplification algorithms
@@ -14,7 +14,7 @@
 > we apply the algorithm $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }}$ to any initial state $\ket{\psi}$
 
 * $U_\pm \ket{x} = \begin{cases} \ket{x} & \text{ if } f(x) \text{ is not a solution } \\\\ -\ket{x} & \text{ if } f(x) \text{ is a solution } \end{cases} = (-1)^{f(x)} \ket{x}$
-* $U_\pm$ puts a negative sign for all $\ket{i}$ in the good state and none of $\ket{i}$ in the bad state
+* $U_\pm$ puts a negative sign for all $\ket{i}$ which are solutions and none of $\ket{i}$ which are not solutions
 * $D = 2 \ket\psi \bra\psi - I$ and is normally written as $H^{\otimes n} (2 \ket{0}\bra{0} - I) H^{\otimes n}$ in most sources
 
 ---
@@ -53,7 +53,7 @@ Assume for simplicity that $\ket{\phi} = \ket{\psi}$ is the uniform superpositio
 
 $\ket\psi = \sin\theta \ket{G} + \cos\theta \ket{B}$ and  
 $\ket\psi = \displaystyle \frac{\sqrt{M}}{\sqrt{N}} \ket{G} + \frac{\sqrt{N - M}}{\sqrt{N}} \ket{B}$
-$\implies \theta = \arcsin(\frac{\sqrt{M}}{\sqrt{N}})$
+$\implies \theta = \sin^{-1}(\frac{\sqrt{M}}{\sqrt{N}})$
 
 For $M \ll N$, $\theta \approx \frac{\sqrt{M}}{\sqrt{N}}$
 
@@ -61,7 +61,7 @@ The phase oracle $U_\pm$ can be thought of as a reflection of the state of the r
 
 $D$ is a reflection about the uniformly distributed state $\ket\psi$. 
 
-So for each iteration, we have two rotations in the $\ket{G}$ - $\ket{B}$ plane
+So for each iteration, we have two reflections in the $\ket{G}$ - $\ket{B}$ plane
 
 ---
 ### Amplitude Amplification Algorithm
@@ -82,7 +82,7 @@ Since the register was initially set at an angle $\theta$ from $\ket{B}$, the st
 If the number of solutions are small, i.e. $M \ll N$, then the starting state will be very close to $\ket{B}$, i.e. we will need to rotate the state by almost an angle of $\frac{\pi}{2}$ to reach $\ket{G}$
 
 So performing $k$ iterations to get to $\displaystyle \frac{\pi}{2}$ away from $\ket{B}$,  
-$(2k+1)\theta = \displaystyle \frac{\pi}{2} \implies$ we will require $k = \displaystyle  \frac{1}{2} \left (   \frac{\pi}{2 \theta} - 1 \right )$ iterations.
+$(2k+1)\theta = \displaystyle \frac{\pi}{2} \implies$ we will require $k = \displaystyle  \frac{1}{2} \left (   \frac{\pi}{2 \theta} - 1 \right ) \approx \frac{\pi}{4}  \frac{\sqrt{N}}{\sqrt{M}}$ iterations.
 
 
 ---
@@ -95,7 +95,7 @@ Therefore around $\displaystyle  \frac{1}{2} \left (   \frac{\pi}{2 \theta} - 1 
 
 Some particular cases $M$ lead to interesting results. Consider the case when $M$ is exactly $25%$ of the total number of possible solutions $N$, i.e. $M = \displaystyle \frac{1}{4} N$. Therefore $\theta \approx \displaystyle \frac{\sqrt{M}}{\sqrt{N}} = \frac{\sqrt{\frac{1}{4}N}}{\sqrt{N}} = \frac{1}{2}$
 
-Then to reach the good state $\ket{G}$, we will need $\displaystyle  \frac{1}{2} \left (   \frac{\pi}{2 \theta} - 1 \right ) \approx 1$ iterations, i.e we find all the solutions in one call to the black box.
+Then to reach the good state $\ket{G}$, we will need $\displaystyle  \frac{1}{2} \left (   \frac{\pi}{2 \theta} - 1 \right ) \approx 1.07$ iterations, i.e we reach close to the good state in one call to the black box.
 
 </section>
 

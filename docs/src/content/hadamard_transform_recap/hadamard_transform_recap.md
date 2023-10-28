@@ -19,7 +19,7 @@ Note:
 ### Hadamard Transform
 > The **Hadamard transform** denoted $H^{\otimes n}$ represents the application of the Hadamard gate to each qubit of an $n$-qubit register in parallel.
 
-Consider the Hadamard tranform applied to an $n$-qubit register, each qubit set to $\ket{0}$,
+Consider the Hadamard transform applied to an $n$-qubit register, each qubit set to $\ket{0}$,
 
 $H^{\otimes n} \ket{0}^n  = \underbrace{(H \ket{0}) \otimes (H \ket{0}) \otimes (H \ket{0}) \otimes ... \otimes (H \ket{0})}_{n\text{ times }}$
 

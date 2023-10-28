@@ -16,9 +16,9 @@
 > The circuit for Grovers algorithm $\boxed{G}$ performs the operation given by the operator  
 > $G = \underbrace{D \cdot U_\pm \cdot....U_\pm \cdot D \cdot U_\pm \cdot D \cdot U_\pm}_{\text{ applied a certain number of times }} \cdot H^{\otimes n}$  
 
-Let $k \in \\{ 0, 1 \\}^n$ be the required solution.
+Let $\ket{k} \in \\{ \ket{0}, \ket{1}, ..., \ket{2^n - 1} \\}$ be the required solution.
 
-We will require the $n$-qubit register to be very close to the state $\ket{k} \in \ket{0}, ..., \ket{2^n-1}$.
+At the end of the algorithm, we require that the $n$-qubit register be brought very close to the state $\ket{k}$.
 
 Applying the Hadamard gate on $\ket{0}^n$, we get the register in the *average state*  
 $\ket\psi = H^{\otimes n} \ket{0}^n = \displaystyle \frac{1}{2^{n/2}} \sum_{i=0}^{2^n-1}\ket{j}$
@@ -87,7 +87,7 @@ So $p$ applications of $D U_\pm$ will result in the solution component having an
 
 
 Suppose we need to make the amplitude of the solution greater than a constant $A$.  
-We proceed to apply $D U_\pm$ a total of $\displaystyle \frac{A\sqrt{N}}{2}$ times (rounded up). 
+We proceed to repeat $D U_\pm$ a total of $p = \displaystyle \frac{A\sqrt{N}}{2}$ times (rounded up). 
 
 We will get the solution component having an amplitude of $\displaystyle \frac{2 \frac{A\sqrt{N}}{2} + 1}{\sqrt{N}} > A$ and the non-solution components will have very low amplitude for large $N$.
 
