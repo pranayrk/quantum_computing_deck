@@ -1,5 +1,7 @@
 <section data-markdown>
-## Grover's Algorithm
+## Mathematical Foundation 
+### of
+## Quantum Computing
 
 Pranay Raja Krishnan
 

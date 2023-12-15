@@ -20,7 +20,9 @@
 			<div class="slides">
 
 <section data-markdown>
-## Grover's Algorithm
+## Mathematical Foundation 
+### of
+## Quantum Computing
 
 Pranay Raja Krishnan
 
@@ -30,6 +32,56 @@ The LNM Institute of Information & Technology
 
 Jaipur
 
+</section>
+
+<section data-markdown>
+# Qubits 
+---
+### Qubits
+* The computers we commonly use today are based on **bits**
+* A **bit** can take on either a $0$ or a $1$ state
+* Their behaviour is modelled by classical information theory
+* Classical information theory tells us these **classical computers** are equivalent to an abstract Turing Machine in computational efficiency
+---
+### Qubits
+* On a quantum computer the **qubit** (quantum bit) is the basic unit of information.
+* While bits take only two values, the state of a qubit can take on a continuum of values
+* Along with some other quantum induced phenomena, this lets quantum computers have a computational efficiency more than a Turing Machine in some cases
+* In labs, qubits have been implemented using photon polarization, electron spin and even defect centers in a diamond.
+---
+### Qubits
+> A complex **Hilbert space** $\mathcal{H}$ is a vector space over $\mathbb{C}$ with a positive definite inner product  
+$\braket{} : \mathcal{H} \times \mathcal{H} \to \mathbb{C}$ defined as $(\vec\psi,\vec\phi) \to \braket{\vec\psi,\vec\phi}$ such that: 
+> * *conjugate symmetric:* $\braket{\vec\psi,\vec\phi} = \overline{\braket{\vec\phi,\vec\psi}}$
+> * *positive definite:* $\braket{\vec\psi,\vec\psi} \geq 0$ and $\braket{\vec\psi,\vec\psi} = 0 \iff \vec\psi = 0$
+> * *anti-linear in first argument:* $\braket{a \vec\phi_1 + b \vec\phi_2, \psi} = \overline{a} \braket{\vec\phi_1, \vec\psi} + \overline{b} \braket{\vec\phi_2, \vec\psi}$
+> * *linear in second argument:* $\braket{\vec\psi, a \vec\phi_1 + b \phi_2} = a \braket{\vec\psi,\vec\phi_1} + b \braket{\vec\psi,\vec\phi_2}$  
+> 
+> and this inner product induces a norm $||.|| : \mathcal{H} \to \mathbb{R}$ defined as $\psi \to \sqrt{\braket{\vec\psi,\vec\psi}}$ in which $\mathcal{H}$ is complete.
+---
+### Qubits
+>  A **qubit** is any quantum mechanical system whose state can be completely described by a unit vector   
+> in a $2$-dimensional complex Hilbert space $\mathcal{H}$ and which follows these axioms:
+> * Principle of Superposition
+> * Principle of Entanglement
+> * Principle of Measurement
+> * Principle of Transformation
+> 
+> The Hilbert space $\mathcal{H}$ is known as the **state space** and is equipped with the inner product $\braket{}$ which is defined as $\braket{\vec\psi, \vec\phi} = \overline{a} c + \overline{b} d$ &nbsp; where &nbsp;  $\vec\psi = \begin{bmatrix} a \\\\ b\end{bmatrix}, \vec\phi = \begin{bmatrix} c \\\\ d \end{bmatrix} \in \mathcal{H}$. 
+>
+> Any unit vector of $\mathcal{H}$ is called a **state vector**.
+
+---
+### Qubits
+> We will write any qubit state vector $\vec{\psi} \in \mathcal{H}$ as $\ket{\psi}$.  
+> This is the notation for a vector in Dirac's bra/ket notation, and is read as **ket psi**  
+
+> The notation $\bra{\psi}$ represents conjugate transpose of $\ket\psi$  
+> $\bra\psi = \ket{\psi}^\dagger = \begin{bmatrix} \overline{a} & \overline{b} \end{bmatrix}$ and is read as **bra psi**
+
+This means the inner product $\braket{\vec\psi,\vec\phi}$ will be represented as $\bra{\psi}\ket\phi$.
+> The inner product will be denoted as $\braket{\psi|\phi} = \overline{a} c + \overline{b} d$  
+>  for any $\ket{\psi} = \begin{bmatrix} a \\\\ b\end{bmatrix}, \ket{\phi} = \begin{bmatrix} c \\\\ d \end{bmatrix} \in \mathcal{H}$ and is read as **braket**
 </section>
 
 <section data-markdown>
@@ -45,6 +97,34 @@ Jaipur
 Note:
 * Shor's has an exponential speedup while Grover's has only quadratic speedup
 * Grover's algorithm could brute-force a 128-bit symmetric cryptographic key in roughly $2^64$ iterations, or a 256-bit key in roughly $2^128$ iterations. 
+</section>
+
+<section data-markdown>
+### Quantum Gates
+* **Quantum Gates** (or Quantum State Transformations) are the building blocks of complex computational systems based on qubits
+* Quantum Gates are a mapping from the state space of a quantum system to itself.
+* It can be shown that these transformations are valid only when the matrix representing the transformation is unitary. `TODO: Include Proof`
+* A mapping $U: \mathcal{H} \to \mathcal{H}$ is unitary when $U^\dagger U = I$ where $U^\dagger$ is the complex conjugate transpose of $U$, known as the *Hermitian transpose*.
+---
+### Quantum Gates
+> **Postulate of Transformation:**  
+> Any state of the qubit can be transformed into any other state. Such transformations are carried out by means of processes that can be represented using unitary linear transformations
+
+* All quantum state transformations are unitary, however that does not mean every unitary operator can be efficiently realized as a quantum transformation. `TODO: Include Proof`
+* The fact that transformations are unitary imply that they are reversible. `TODO: Include Proof`
+* The hadamard gates and the phase-shift gates are enough to perform any unitary operation on a single qubit. `TODO: Include Proof`
+---
+### Quantum Gates
+* A common set of quantum gates are those which use the unitary Pauli matrices,   
+   $\sigma_x = \begin{bmatrix} 0 & 1 \\\\ 1 & 0 \end{bmatrix}, \sigma_y = \begin{bmatrix} 0 & -i \\\\ i & 0 \end{bmatrix}, \sigma_z = \begin{bmatrix} 1 & 0 \\\\ 0 & -1 \end{bmatrix}$
+* These quantum gates are known as **Pauli Gates**, and are the transformations $I, X=\sigma_x, Y = \sigma_y, Z = \sigma_z$.  
+  These are quantum gates that act on a single qubit
+* The **Hadamard Gate** is another common single-qubit gate where the transformation is represented by a unitary matrix $H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 & 1 \\\\ 1 & -1 \end{bmatrix}$
+---
+### Quantum Gates
+* The phase shift gate is a family of single-qubit gates that map the basis states as $\ket{0} \to \ket{0}$, $\ket{1} \to e^{i \phi} \ket{1}$ where $\phi$ is the phase shift with period $2 \pi$. It is represented by the unitary matrix $P(\phi) = \begin{bmatrix} 1 & 0 \\\\ 0 & e^{i \phi} \end{bmatrix}$
+* It can be shown that every single qubit gate can be represented by some combination of Hadamard gates and Phase Shift gates. `TODO: Include Proof`
+
 </section>
 
 <section data-markdown>

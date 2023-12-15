@@ -1,6 +1,8 @@
 map:
   - title
+  - qubits
   - intro
+  - gates
   - basis_of_n_qubits
   - hadamard_transform_recap
   - reflection_operator
