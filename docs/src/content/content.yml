@@ -1,17 +1,4 @@
 map:
   - title
   - qubits
-  - intro
-  - gates
-  - basis_of_n_qubits
-  - hadamard_transform_recap
-  - reflection_operator
-  - problem_setup
-  - classical_approach
-  - algorithm_summary
-  - oracle
-  - algorithm_continued
-  - amplitude_amplification
-    #- optimality
-    # - applications
-  - resources
+    #  - algorithms
