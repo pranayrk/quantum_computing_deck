@@ -1,4 +1,4 @@
 map:
   - title
   - qubits
-    #  - algorithms
+  - algorithms

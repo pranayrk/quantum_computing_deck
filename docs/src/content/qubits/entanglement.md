@@ -64,8 +64,22 @@
 > $\mathcal{H}\_1 \otimes \mathcal{H}\_2 \otimes ... \otimes \mathcal{H}\_n$ of the state spaces of the $n$ qubits taken independently.
 
 * Given an ONB $\\{ \ket{ e\_{i}} \\}\_{i = 1}^n$ for $\mathcal{H}\_1$ and an ONB $\\{ \ket{f_{j}} \\}\_{j = 1}^m$ for $\mathcal{H}\_2$, we have $\\{ \ket{e\_{i}} \otimes \ket{f\_{j}} \\}$ is a basis for $\mathcal{H}\_1 \otimes \mathcal{H}\_2$. (Infact this is an ONB for $\mathcal{H}\_1 \otimes \mathcal{H}\_2$)
-* Suppose we take, in particular, the computational basis $\\{ \\; \ket{0_1}, \ket{1_1} \\; \\}$ for $\mathcal{H}\_1$ and the computational basis $\\{ \\; \ket{0_2}, \ket{1_2} \\; \\}$ for $\mathcal{H}\_2$. Then $\\{ \\; \ket{0_1} \otimes \ket{0_2}, \ket{0_1} \otimes \ket{1_2}, \ket{1_1} \otimes \ket{0_2}, \ket{1_1} \otimes \ket{1_2} \\; \\}$ is an ONB for $\mathcal{H}\_1 \otimes \mathcal{H}\_2$. This basis is called the **computational basis** for $\mathcal{H}\_1 \otimes \mathcal{H}\_2$ and is also denoted as $\\{ \\; \ket{00}, \ket{01}, \ket{10}, \ket{11} \\; \\}$
+* Suppose we take, in particular, the computational basis $\\{ \\; \ket{0_1}, \ket{1_1} \\; \\}$ for $\mathcal{H}\_1$ and the computational basis $\\{ \\; \ket{0_2}, \ket{1_2} \\; \\}$ for $\mathcal{H}\_2$.  
+   Then $\\{ \\; \ket{0_1} \otimes \ket{0_2}, \ket{0_1} \otimes \ket{1_2}, \ket{1_1} \otimes \ket{0_2}, \ket{1_1} \otimes \ket{1_2} \\; \\}$ is an ONB for $\mathcal{H}\_1 \otimes \mathcal{H}\_2$.  
+  This basis is called the **computational basis** for $\mathcal{H}\_1 \otimes \mathcal{H}\_2$ and is also denoted as $\\{ \\; \ket{00}, \ket{01}, \ket{10}, \ket{11} \\; \\}$ or more simply, $\\{ \ket{0}, \ket{1}, \ket{2}, \ket{3} \\}$
 
+---
+### Qubits
+* For $1$ qubit, the computational basis is $\\{ \ket{0}, \ket{1} \\}$
+* For $2$ qubits, the computational basis is $\\{ \ket{0}, \ket{1}, \ket{2}, \ket{3} \\}$ where
+   * $\ket{0} = \ket{00} = \ket{0} \otimes \ket{0}$
+   * $\ket{1} = \ket{01} = \ket{0} \otimes \ket{1}$
+   * $\ket{2} = \ket{10} = \ket{1} \otimes \ket{0}$
+   * $\ket{3} = \ket{11} = \ket{1} \otimes \ket{1}$
+* For $n$ qubits, the computational basis is $\\{ \ket{0}, \ket{1}, ..., \ket{2^n - 1} \\}$ where
+    * $\ket{0} = \ket{00...00} = \underbrace{\ket{0} \otimes \ket{0} \otimes ... \otimes \ket{0}}\_{n\text{ times }}$
+    * $\ket{1} = \ket{00...01} = \underbrace{\ket{0} \otimes \ket{0} \otimes ... \otimes \ket{0}}\_{n-1\text{ times }} \otimes \ket{1}$
+    * $\ket{2^n - 1} = \ket{11...11} = \underbrace{\ket{1} \otimes \ket{1} \otimes ... \otimes \ket{1}}\_{n\text{ times }}$
 ---
 ### Qubits
 * Consider $\ket\psi = \begin{bmatrix} a \\\\ b \end{bmatrix}$ and $\ket\phi = \begin{bmatrix} c \\\\ d \end{bmatrix}$. Then their tensor product is  
@@ -77,7 +91,7 @@
 ### Qubits
 * Another commonly used basis for a $2$-qubit system is the **Bell Basis** which is the set of Bell states $\\{ \\; \ket{\phi^+}, \ket{\phi^-}, \ket{\psi^+}, \ket{\psi^-} \\; \\}$ where:
 * $\ket{\phi^+} = \frac{1}{\sqrt{2}} ( \ket{00} + \ket{11} ) = \begin{bmatrix} \frac{1}{\sqrt{2}} \\\\ 0 \\\\ 0 \\\\ \frac{1}{\sqrt{2}} \end{bmatrix}$ and $\ket{\phi^-} = \frac{1}{\sqrt{2}} ( \ket{00} - \ket{11} ) = \begin{bmatrix} \frac{1}{\sqrt{2}} \\\\ 0 \\\\ 0 \\\\ - \frac{1}{\sqrt{2}} \end{bmatrix}$
-* $\ket{\psi^+} = \frac{1}{\sqrt{2}} ( \ket{01} + \ket{10} ) = \begin{bmatrix} 0 \\\\ \frac{1}{\sqrt{2}} \\\\ \frac{1}{\sqrt{2\\\\ 0 }} \end{bmatrix}$ and $\ket{\psi^-} = \frac{1}{\sqrt{2}} ( \ket{01} - \ket{10} ) = \begin{bmatrix} 0 \\\\ \frac{1}{\sqrt{2}} \\\\ - \frac{1}{\sqrt{2}} \\\\ 0 \end{bmatrix}$
+* $\ket{\psi^+} = \frac{1}{\sqrt{2}} ( \ket{01} + \ket{10} ) = \begin{bmatrix} 0 \\\\ \frac{1}{\sqrt{2}} \\\\ \frac{1}{\sqrt{2}}\\\\ 0  \end{bmatrix}$ and $\ket{\psi^-} = \frac{1}{\sqrt{2}} ( \ket{01} - \ket{10} ) = \begin{bmatrix} 0 \\\\ \frac{1}{\sqrt{2}} \\\\ - \frac{1}{\sqrt{2}} \\\\ 0 \end{bmatrix}$
 * The Bell states are orthonormal
 * Bell states are of fundamental importance to quantum information processing. Particularly for their use for quantum teleportation and dense coding.
 

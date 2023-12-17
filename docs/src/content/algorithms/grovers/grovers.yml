@@ -1,8 +1,7 @@
 map:
   - intro
-  - gates
-  - basis_of_n_qubits
-  - hadamard_transform_recap
+    # - basis_of_n_qubits
+    #  - hadamard_transform_recap
   - reflection_operator
   - problem_setup
   - classical_approach
@@ -12,4 +11,4 @@ map:
   - amplitude_amplification
     #- optimality
     # - applications
-  - resources
+    #  - resources

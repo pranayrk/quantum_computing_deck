@@ -1,4 +1,8 @@
 <section data-markdown>
+# Grover's Algorithm 
+
+---
+
 ### Key Points
 * Published by Lov Kumar Grover in 1996
 * One of the most famous quantum algorithms

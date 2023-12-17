@@ -28,8 +28,8 @@ $\braket{} : \mathcal{H} \times \mathcal{H} \to \mathbb{C}$ defined as $(\vec\ps
 > in a $2$-dimensional complex Hilbert space $\mathcal{H}$ and which follows these axioms:
 > * Principle of Superposition
 > * Principle of Entanglement
-> * Principle of Transformation
 > * Principle of Measurement
+> * Principle of Transformation
 > 
 > The Hilbert space $\mathcal{H}$ is known as the **state space** and is equipped with the inner product $\braket{}$ which is defined as $\braket{\vec\psi, \vec\phi} = \overline{a} c + \overline{b} d$ &nbsp; where &nbsp;  $\vec\psi = \begin{bmatrix} a \\\\ b\end{bmatrix}, \vec\phi = \begin{bmatrix} c \\\\ d \end{bmatrix} \in \mathcal{H}$. 
 >
@@ -43,6 +43,9 @@ $\braket{} : \mathcal{H} \times \mathcal{H} \to \mathbb{C}$ defined as $(\vec\ps
 > $\bra\psi = \ket{\psi}^\dagger = \begin{bmatrix} \overline{a} & \overline{b} \end{bmatrix}$ and is read as **bra psi**
 
 This means the inner product $\braket{\vec\psi,\vec\phi}$ will be $\bra{\psi}\ket\phi$.
+
 > The inner product will be denoted as $\braket{\psi|\phi} = \overline{a} c + \overline{b} d$  
 >  for any $\ket{\psi} = \begin{bmatrix} a \\\\ b\end{bmatrix}, \ket{\phi} = \begin{bmatrix} c \\\\ d \end{bmatrix} \in \mathcal{H}$ and is read as **braket**
+
+The set of all bra vectors forms the dual space of $\mathcal{H}$.
 </section>
