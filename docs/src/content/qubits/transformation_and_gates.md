@@ -7,13 +7,6 @@
 > That is, a matrix is said to be unitary if &nbsp; $U U^\dagger = U^\dagger U = I$
 
 > A unitary transformation $U$ is represented by a unitary matrix.
-
-> The following conditions are equivalent:
-> * A matrix $U$ is unitary
-> * the columns of $U$ are orthonormal vectors
-> * the rows of $U$ are orthonormal vectors
-
-
 ---
 ### Qubits
 ##### Principle of Transformation

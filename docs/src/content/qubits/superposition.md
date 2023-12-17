@@ -15,8 +15,8 @@
 ---
 ### Qubits
 * When working with Hilbert spaces associated with quantum systems, we normally use *orthonormal bases* to describe state vectors.
-* The **computational basis** for the two dimensional complex vector space $\mathcal{H}$ is $\\{ \ket{0}, \ket{1} \\}$ where $\ket{0} = \begin{bmatrix} 1 \\\\ 0 \end{bmatrix}$ and $\ket{1} = \begin{bmatrix} 0 \\\\ 1 \end{bmatrix}$
-* The **Hadamard Basis** for the two dimensional complex vector space $\mathcal{H}$ is  $\\{ \ket{+}, \ket{-} \\}$ where $\ket{+} = \displaystyle\frac{1}{\sqrt 2} (\ket{0} + \ket{1}) = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\\\ 1 \end{bmatrix}$  
+* The **computational basis** for the two dimensional complex vector space $\mathcal{H}$ is $\\{ \\; \ket{0}, \ket{1} \\; \\}$ where $\ket{0} = \begin{bmatrix} 1 \\\\ 0 \end{bmatrix}$ and $\ket{1} = \begin{bmatrix} 0 \\\\ 1 \end{bmatrix}$
+* The **Hadamard Basis** for the two dimensional complex vector space $\mathcal{H}$ is  $\\{ \\; \ket{+}, \ket{-} \\; \\}$ where $\ket{+} = \displaystyle\frac{1}{\sqrt 2} (\ket{0} + \ket{1}) = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\\\ 1 \end{bmatrix}$  
   and $\ket{-} = \displaystyle\frac{1}{\sqrt 2} (\ket{0} - \ket{1}) = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\\\ -1 \end{bmatrix}$
 
 ---
