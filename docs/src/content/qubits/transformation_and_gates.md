@@ -58,17 +58,6 @@ This implies that not all classical gates have a direct quantum analog.
 * $H X H = Z$ and $HYH = -Y$.
 ---
 ### Quantum Gates
-##### Gates on a single qubit
-> The **Rotation Gates** are the gates $\\{ R\_x, R\_y, R\_z \\}$ where   
-> $R\_x = \begin{bmatrix} \cos(\frac{\theta}{2}) & -i \sin(\frac{\theta}{2}) \\\\ -i \sin(\frac{\theta}{2}) & \cos(\frac{\theta}{2}) \end{bmatrix}$, 
-> $R\_y = \begin{bmatrix} \cos \frac{\theta}{2} & - \sin \frac{\theta}{2} \\\\ \sin \frac{\theta}{2} & \cos \frac{\theta}{2} \end{bmatrix}$ and
-> $R\_z = \begin{bmatrix} 1 & 0 \\\\ 0 & e^{i\theta} \end{bmatrix}$
-
-* $R\_x, R\_y, R\_z$ each define a rotation on the Bloch sphere of the state about the $x$-axis, $y$-axis, $z$-axis respectively by an angle of $\theta$.
-* $R\_z = \ket{0}\bra{0} + e^{i\theta} \ket{1}\bra{1}$
-* The Pauli matrix $Z = \begin{bmatrix} 1 & 0 \\\\ 0 & -1 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\\\ 0 & e^{i \pi} \end{bmatrix}$ is a special case of the $R\_z$ matrix and represents a rotation of $\pi$ degrees about the $z$-axis.
----
-### Quantum Gates
 ##### Gates on multiple qubits
 
 > The **CNOT gate** (Controlled-NOT) is the gate defined by the matrix   

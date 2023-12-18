@@ -154,7 +154,7 @@ If $\ket{v}$ is a state vector and $\ket{v} = \begin{bmatrix} a \\\\ b \end{bmat
 ### Qubits
 ##### Principle of Entanglement
 
-> Given an ONB $\\{ \ket{ e\_{i}} \\}\_{i = 1}^n$ for $\mathcal{H}\_1$ and an ONB $\\{ \ket{f_{j}} \\}\_{j = 1}^m$ for $\mathcal{H}\_2$, we have $\\{ \ket{e\_{i}} \otimes \ket{f\_{j}} \\}$ is an orthonormal basis for the **tensor product space** $\mathcal{H}\_1 \otimes \mathcal{H}\_2$.
+> Given an ONB $\\{ \\; \ket{ e\_{i}} \\; \\}\_{i = 1}^n$ for $\mathcal{H}\_1$ and an ONB $\\{ \\; \ket{f_{j}} \\; \\}\_{j = 1}^m$ for $\mathcal{H}\_2$, we have $\\{ \\; \ket{e\_{i}} \otimes \ket{f\_{j}} \\; \\}$ is an orthonormal basis for a Hilbert space known as the **tensor product space** $\mathcal{H}\_1 \otimes \mathcal{H}\_2$.
 
 > When we have two qubits being treated as a combined system, the state space of the combined system is the tensor product $\mathcal{H}\_1 \otimes \mathcal{H}\_2$ of the state spaces $\mathcal{H}\_1, \mathcal{H}\_2$ of the component qubit subsystems.
 >
@@ -182,6 +182,7 @@ If $\ket{v}$ is a state vector and $\ket{v} = \begin{bmatrix} a \\\\ b \end{bmat
 * $\ket{\psi^+} = \frac{1}{\sqrt{2}} ( \ket{01} + \ket{10} ) = \begin{bmatrix} 0 \\\\ \frac{1}{\sqrt{2}} \\\\ \frac{1}{\sqrt{2}}\\\\ 0  \end{bmatrix}$ and $\ket{\psi^-} = \frac{1}{\sqrt{2}} ( \ket{01} - \ket{10} ) = \begin{bmatrix} 0 \\\\ \frac{1}{\sqrt{2}} \\\\ - \frac{1}{\sqrt{2}} \\\\ 0 \end{bmatrix}$
 * The Bell states are orthonormal
 * Bell states are of fundamental importance to quantum information processing. Particularly for their use for quantum teleportation and dense coding.
+* Bell states are also called EPR pairs (Einstein-Podolsky-Rosen pairs)
 
 ---
 ### Qubits
@@ -194,6 +195,24 @@ If $\ket{v}$ is a state vector and $\ket{v} = \begin{bmatrix} a \\\\ b \end{bmat
 * *Example:* The state $\ket{\psi} = \frac{1}{\sqrt{2}} (\ket{01} + \ket{11})$ of a $2$-qubit system is seperable since we can write $\ket{\psi} = \ket{+} \otimes \ket{1} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \otimes \ket{1}$
 * *Example:* The state $\ket{\psi^+} = \frac{1}{\sqrt{2}} (\ket{00} + \ket{11})$ of a $2$-qubit system is an entangled state. 
 * In fact all the Bell states are entangled states
+
+</section>
+
+<section data-markdown>
+### Qubits
+##### Principle of Measurement
+> Consider we have a quantum state $\ket{\psi} \in \mathcal{H}$ where $\ket{\psi} = \alpha\_1 \ket{e\_1} + \alpha\_2 \ket{e\_2} + ... + \alpha\_n \ket{e\_n}$  
+> and $\\{ \\; \ket{e\_i} \\; \\}\_{i=1}^n $ is an orthonormal basis for $\mathcal{H}$.
+>
+> If we apply any experiment that distinguishes every $\ket{e\_i}\_{i=1}^n$  
+> then we will observe $\ket{e\_i}$ with probability $|\alpha\_i^2|$
+> 
+> Further, after the experiment, the state of the qubit will be changed to the result of the experiment.
+
+* For a quantum state $\ket\psi = \alpha\_1 \ket{e\_1} + \alpha\_2 \ket{e\_2} + ... + \alpha\_n \ket{e\_n}$ we have  
+    $\sum\_{i = 1}^n |\alpha\_i|^2 = 1$. This implies $\sum\_{i = 1}^n P(\ket{e\_i}) = 1$ where $P(\ket{e\_i})$ is the probability of observing $\ket{e\_i}$.
+
+
 
 </section>
 
@@ -255,17 +274,6 @@ This implies that not all classical gates have a direct quantum analog.
 * The Hadamard gate is important because it allows us to obtain a uniform superposition state, $\ket{+}$ from $\ket{0}$ or $\ket{-}$ from $\ket{1}$
 *  $H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 & 1 \\\\ 1 & -1 \end{bmatrix} = \frac{1}{\sqrt{2}} \left ( \begin{bmatrix} 0 & 1 \\\\ 1 & 0 \end{bmatrix} + \begin{bmatrix} 1 & 0 \\\\ 0 & -1 \end{bmatrix} \right ) = \frac{1}{\sqrt{2}} ( X + Z ) $
 * $H X H = Z$ and $HYH = -Y$.
----
-### Quantum Gates
-##### Gates on a single qubit
-> The **Rotation Gates** are the gates $\\{ R\_x, R\_y, R\_z \\}$ where   
-> $R\_x = \begin{bmatrix} \cos(\frac{\theta}{2}) & -i \sin(\frac{\theta}{2}) \\\\ -i \sin(\frac{\theta}{2}) & \cos(\frac{\theta}{2}) \end{bmatrix}$, 
-> $R\_y = \begin{bmatrix} \cos \frac{\theta}{2} & - \sin \frac{\theta}{2} \\\\ \sin \frac{\theta}{2} & \cos \frac{\theta}{2} \end{bmatrix}$ and
-> $R\_z = \begin{bmatrix} 1 & 0 \\\\ 0 & e^{i\theta} \end{bmatrix}$
-
-* $R\_x, R\_y, R\_z$ each define a rotation on the Bloch sphere of the state about the $x$-axis, $y$-axis, $z$-axis respectively by an angle of $\theta$.
-* $R\_z = \ket{0}\bra{0} + e^{i\theta} \ket{1}\bra{1}$
-* The Pauli matrix $Z = \begin{bmatrix} 1 & 0 \\\\ 0 & -1 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\\\ 0 & e^{i \pi} \end{bmatrix}$ is a special case of the $R\_z$ matrix and represents a rotation of $\pi$ degrees about the $z$-axis.
 ---
 ### Quantum Gates
 ##### Gates on multiple qubits

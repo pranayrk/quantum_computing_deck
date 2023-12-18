@@ -27,7 +27,7 @@
 ### Qubits
 ##### Principle of Entanglement
 
-> Given an ONB $\\{ \ket{ e\_{i}} \\}\_{i = 1}^n$ for $\mathcal{H}\_1$ and an ONB $\\{ \ket{f_{j}} \\}\_{j = 1}^m$ for $\mathcal{H}\_2$, we have $\\{ \ket{e\_{i}} \otimes \ket{f\_{j}} \\}$ is an orthonormal basis for the **tensor product space** $\mathcal{H}\_1 \otimes \mathcal{H}\_2$.
+> Given an ONB $\\{ \\; \ket{ e\_{i}} \\; \\}\_{i = 1}^n$ for $\mathcal{H}\_1$ and an ONB $\\{ \\; \ket{f_{j}} \\; \\}\_{j = 1}^m$ for $\mathcal{H}\_2$, we have $\\{ \\; \ket{e\_{i}} \otimes \ket{f\_{j}} \\; \\}$ is an orthonormal basis for a Hilbert space known as the **tensor product space** $\mathcal{H}\_1 \otimes \mathcal{H}\_2$.
 
 > When we have two qubits being treated as a combined system, the state space of the combined system is the tensor product $\mathcal{H}\_1 \otimes \mathcal{H}\_2$ of the state spaces $\mathcal{H}\_1, \mathcal{H}\_2$ of the component qubit subsystems.
 >
@@ -55,6 +55,7 @@
 * $\ket{\psi^+} = \frac{1}{\sqrt{2}} ( \ket{01} + \ket{10} ) = \begin{bmatrix} 0 \\\\ \frac{1}{\sqrt{2}} \\\\ \frac{1}{\sqrt{2}}\\\\ 0  \end{bmatrix}$ and $\ket{\psi^-} = \frac{1}{\sqrt{2}} ( \ket{01} - \ket{10} ) = \begin{bmatrix} 0 \\\\ \frac{1}{\sqrt{2}} \\\\ - \frac{1}{\sqrt{2}} \\\\ 0 \end{bmatrix}$
 * The Bell states are orthonormal
 * Bell states are of fundamental importance to quantum information processing. Particularly for their use for quantum teleportation and dense coding.
+* Bell states are also called EPR pairs (Einstein-Podolsky-Rosen pairs)
 
 ---
 ### Qubits
