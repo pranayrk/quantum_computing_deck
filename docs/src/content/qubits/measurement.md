@@ -5,7 +5,9 @@
 > and $\\{ \\; \ket{e\_i} \\; \\}\_{i=1}^n $ is an orthonormal basis for $\mathcal{H}$.
 >
 > If we apply any experiment that distinguishes every $\ket{e\_i}\_{i=1}^n$  
-> then we will observe $\ket{e\_i}$ with probability $|\alpha\_i^2|$
+> then we will observe $\ket{e\_i}$ with probability $|\alpha\_i|^2 = |\braket{e\_i | \psi}|^2$  
+>
+> Such an experiment which corresponds to a basis of the system is known as a **complete projective measurement**
 > 
 > Further, after the experiment, the state of the qubit will be changed to the result of the experiment.
 

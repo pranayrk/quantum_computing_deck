@@ -1,5 +1,6 @@
 map:
   - title
   - qubits
+  - teleportation.md
   - algorithms
   - resources.md
