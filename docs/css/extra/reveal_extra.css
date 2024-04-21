@@ -10,21 +10,24 @@
     width: 100%;
     font-size: 100%;
     font-style: normal;
+    background-color: #e7eaf6;
+    padding: 25px;
 }
 
 .reveal em {
-    color: mediumseagreen;
+    color: #347474;
+    font-weight: bold;
 }
 
 .reveal code {
     font: inherit;
-    color: mediumseagreen;
+    color: #347474;
 }
 
 .reveal li {
-    font-size: 28px;
+    font-size: 35px;
 }
 
 .reveal p {
-    font-size: 25px;
+    font-size: 35px;
 }

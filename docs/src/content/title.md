@@ -1,7 +1,7 @@
 <section data-markdown>
-## Mathematical Foundation 
-### of
-## Quantum Computing
+## Quantum Algorithms
+### and
+## Applications to Machine Learning
 
 Pranay Raja Krishnan
 

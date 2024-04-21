@@ -1,6 +1,16 @@
 map:
-  - title
-  - qubits
-  - teleportation.md
-  - algorithms
+  - title.md
+  - contents.md
+  - foundations.md
+  - superposition.md
+  - transformation.md
+  - measurement.md
+  - entanglement.md
+  - deutsch.md
+  - simons.md
+  - grovers.md
+  - qft.md
+  - qpe.md
+  - hhl.md
+  - machine_learning.md
   - resources.md
