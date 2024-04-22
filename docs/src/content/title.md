@@ -1,7 +1,7 @@
 <section data-markdown>
-## Quantum Algorithms
+## Quantum Computing Algorithms
 ### and
-## Applications to Machine Learning
+## Applications
 
 Pranay Raja Krishnan
 

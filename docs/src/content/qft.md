@@ -21,7 +21,7 @@ $$y_k = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} x_j \omega^{kj}$$
 </section>
 <section data-markdown>
 ### Quantum Fourier Transform
-* Evaluating the matrix operations of $F_N$ to evaluate the DFT requires $N^2$ operations, so DFT has a time complexity of $O(N^2)$
+* Evaluating the DFT directly has a time complexity of $O(N^2)$
 * Using a faster algorithm known as *Fast Fourier Transform (FFT)* allows us to calculate the DFT in $O(N \log N)$
 * The QFT performs an action similar to the DFT in only $O((\log N)^2 )$
 Note:

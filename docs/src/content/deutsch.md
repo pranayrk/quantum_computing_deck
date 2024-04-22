@@ -1,5 +1,5 @@
 <section data-markdown>
-# Quantum Algorithms
+# Quantum Computing Algorithms
 </section>
 <section data-markdown>
 ### Deutsch-Jozsa Algorithm

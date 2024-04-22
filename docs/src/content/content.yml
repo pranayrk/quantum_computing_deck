@@ -1,11 +1,7 @@
 map:
   - title.md
   - contents.md
-  - foundations.md
-  - superposition.md
-  - transformation.md
-  - measurement.md
-  - entanglement.md
+#  - foundations.md
   - deutsch.md
   - simons.md
   - grovers.md

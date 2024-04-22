@@ -1,7 +1,6 @@
 <section data-markdown>
 ### Contents
-* Foundations of Quantum Computing
-* Quantum Algorithms
+* Quantum Computing Algorithms
     * Deutsch Algorithm
     * Simon's Algorithm
     * Grover's Algorithm
