@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Mathematical Foundations of Quantum Computing</title>
+		<title>Quantum Algorithm and Quantum Machine Learning</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -33,6 +33,100 @@ The LNM Institute of Information & Technology
 Jaipur
 
 </section>
+
+<section>
+<section data-markdown>
+### Fundamentals of Quantum Computing
+
+* The **qubit** forms the foundational unit of computing
+* A qubit can be represented as a mathematical model with the following principles:
+    * Principle of Superposition
+    * Principle of Transformation
+    * Principle of Measurement
+    * Principle of Entanglement
+</section>
+<section data-markdown>
+### Fundamentals of Quantum Computing
+##### Principle of Superposition
+> The state of every qubit can be represented by a unit vector in a 2-dimensional complex Hilbert space
+
+The state is normally described with respect to the **computational basis** $\\{ \\; \ket{0}, \ket{1} \\; \\} $
+where 
+
+$\ket{0} = 1 + 0 i = \begin{bmatrix} 1 \\\\ 0 \end{bmatrix}$ and $\ket{1} = 0 + 1 i = \begin{bmatrix} 0 \\\\ 1 \end{bmatrix}$
+</section>
+<section data-markdown>
+### Fundamentals of Quantum Computing
+##### Principle of Transformation
+> Any change in the state of a qubit can be described by the action of a unitary transformation
+
+A unitary transformation is a linear isomorphism that preserves the inner product.
+
+This can be represented by a unitary matrix $U$ where $$U U^\dagger = U^\dagger U = I$$
+
+</section>
+<section data-markdown>
+### Fundamentals of Quantum Computing
+##### Principle of Entanglement
+
+> Multiple qubits interacting together results in the state space of the combined system being the *tensor product space* of the individual qubit state spaces
+
+The tensor product $\ket{\psi} \otimes \ket{\phi} = \begin{bmatrix} a \\\\ b \end{bmatrix} \begin{bmatrix} c \\\\ d \end{bmatrix} = \begin{bmatrix} ac \\\\ ad \\\\ bc \\\\ bd \end{bmatrix}$
+
+</section>
+<section data-markdown>
+### Fundamentals of Quantum Computing
+##### Principle of Entanglement
+
+> Two interacting qubits have a state space of dimension 4
+
+The state space for two interacting qubits has the **computational basis** $\\{\\; \ket{0}, \ket{1}, \ket{2}, \ket{3} \\; \\}$ where 
+
+ $\ket{0} = \ket{0} \otimes \ket{0} \qquad \ket{1} = \ket{0} \otimes \ket{1}$
+
+ $\ket{2} = \ket{1} \otimes \ket{0} \qquad \ket{3} = \ket{1} \otimes \ket{1}$
+
+
+
+</section>
+<section data-markdown>
+### Fundamentals of Quantum Computing
+##### Principle of Entanglement
+
+> $n$ interacting qubits have a state space of dimension $2^n$
+
+The state space for two interacting qubits has the **computational basis** $\\{\\; \ket{0}, \ket{1}, \ket{2}, ..., \ket{2^n - 1} \\; \\}$ where 
+
+ $\ket{0} = \underbrace{\ket{0} \otimes \ket{0} \otimes ... \otimes \ket{0}}_{n \text{ times}}$
+
+ $\ket{2^n - 1} = \underbrace{\ket{1} \otimes \ket{1} \otimes ... \otimes \ket{1}}_{n \text{ times}}$
+
+</section>
+
+<section data-markdown>
+### Fundamentals of Quantum Computing
+##### Principle of Entanglement
+
+> Most states in the tensor product space cannot be expressed as the tensor product of states in the individual qubits
+
+For example:
+
+The state $\ket{\phi^+} = \frac{1}{\sqrt{2}} ( \ket{0} + \ket{1} )$ cannot be expressed as a tensor product of two individual qubit states
+
+
+</section>
+<section data-markdown>
+### Fundamentals of Quantum Computing
+##### Principle of Measurement
+Consider the qubit in state $\ket{\psi} = a \ket{0} + b \ket{1}$ and a measurement device calibrated to the computational basis
+
+> The action of measurement causes the state of the qubit to collapse into either $\ket{0}$ or $\ket{1}$ which will be output of measurement
+
+The probability of measuring $\ket{0}$ is $|a|^2$ and the probability of measuring $\ket{1}$ is $|b|^2$
+
+</section>
+</section>
+
 
 <section data-markdown>
 ### Contents
@@ -153,6 +247,7 @@ Note:
 1995
 </section>
 
+<section>
 <section data-markdown>
 ### HHL Algorithm
 
@@ -168,6 +263,50 @@ Note:
 Note:
 2008
 </section>
+<section data-markdown>
+### HHL Algorithm
+This algorithm makes use of the following theorem.
+> **Spectral Theorem:** If $A$ is Hermitian on a vector space $V$, then there exists an orthonormal basis of $V$ consisting of eigenvectors of $A$. 
+> Each eigenvalue of $A$ is real.
+
+$A$ is diagonalizable precisely when there are exactly $N$ linearly independent eigenvectors.
+</section>
+<section data-markdown>
+### HHL Algorithm
+Let the eigenvectors of the matrix $A$ be $\ket{\phi_0}, \ket{\phi_1}, ..., \ket{\phi_{N-1}}$ where each eigenvector $\ket{\phi_i}$ is associated to an eigenvalue $\lambda_i$.
+
+> The self-adjoint matrix $A$ can be written as a linear combination of outer products of its eigenvectors as $$A = \sum_{j=0}^{N-1} \lambda_j \ket{\phi_j}\bra{\phi_j}$$
+
+</section>
+<section data-markdown>
+### HHL Algorithm
+* $A = \sum_{j=0}^{N-1} \lambda_j \ket{\phi_j}\bra{\phi_j} \implies A^{-1} = \sum_{j=0}^{N-1} \lambda_j^{-1} \ket{\phi_j}\bra{\phi_j}$
+* Let $\ket{b} = \sum_{i=0}^{N-1} b_i \ket{\phi_i}$ in the eigenvector basis of $A$.
+
+* Then $\ket{x}$ can be written in the eigenvector basis of $A$ as  
+$$\begin{aligned}
+    \ket{x} & = A^{-1} \ket{b} \\\\
+            & = \left (\sum_{j=0}^{N-1} \lambda_j \ket{\phi_j}\bra{\phi_j} \right ) \left (\sum_{i=0}^{N-1} b_i \ket{\phi_i} \right) \\\\
+            & = \sum_{j=0}^{N-1} \lambda_j^{-1} b_j \ket{\phi_j}
+\end{aligned}$$
+</section>
+<section data-markdown>
+### HHL Algorithm
+
+> Let $U = e^{i A t}$ where $t \in \mathbb{R}$ represents the time-evolution of the unitary.   
+> Then $U$ is a unitary matrix. 
+
+> The eigenvectors of $A$ are the eigenvectors of $U = e^{iAt}$ and for each eigenvector $\ket{\phi_i}$ of $A$, we have  $$U \ket{\phi_i} = e^{i \lambda_i t} \ket{\phi_i}$$
+        
+    
+</section>
+
+<section>
+<h3>HHL Algorithm</h3>
+<img src="media/hhl.png"></img>
+</section>
+</section>
+
 
 <section data-markdown>
 # Applications to Machine Learning
@@ -199,6 +338,16 @@ Note:
 * Return y.
 </section>
 <section data-markdown>
+### HHL Algorithm in Machine Learning
+
+> Zhao, Z., Pozas-Kerstjens, A., Rebentrost, P., & Wittek, P. (2019).   
+> *Bayesian deep learning on a quantum computer*  
+> https://doi.org/10.1007/s42484-019-00004-7
+
+*"In June 2019, Zhao et al. developed an algorithm for performing Bayesian training of deep neural networks in quantum computers with an exponential speedup over classical training due to the use of the quantum algorithm for linear systems of equations"*
+</section>
+
+<section data-markdown>
 ### Types of Machine Learning Models
 * **Linear:** These are deterministic methods use a model function of the form $f = \phi(\bm{w}^T \bm{x})$.
 * **Neural Networks:** These models can be probabilistic or deterministic and they have components that resemble neurons.
@@ -212,7 +361,8 @@ Note:
 Unlike standard neural networks, Convolutional Neural Networks (CNNs) use the operation of **convolution** between layers.
 
 
-> Shen, F., & Liu, J. (2021). *QFCNN: Quantum Fourier Convolutional Neural Network*  
+> Shen, F., & Liu, J. (2021).   
+> *QFCNN: Quantum Fourier Convolutional Neural Network*  
 > https://doi.org/10.48550/arxiv.2106.10421
 
 This paper describes the use of QFT to speed up the convolution operation. 
@@ -247,7 +397,17 @@ This paper suggests that is no physically realizable process $P$ to compute the 
 </section>
 <section data-markdown>
 ### Kernel Methods
+* Some examples of machine learning models using kernel functions are given below:
+    * **Kernel Density Estimation:** $\displaystyle f(x) = \frac{1}{M} \sum_{i=1}^M \mathcal{K}(\bm{x}, \bm{x\_i})$
+    * **K-Nearest Neighbours:** $\displaystyle f(x) = \frac{1}{M} \sum_{i\\;|\\;\mathcal{K}(\bm{x}, \bm{x_i}) < C}^M y_i$
+    * **Support Vector Machine:** $\displaystyle f(x) = \sum_{i=1}^M \alpha\_i \mathcal{K}(\bm{x}, \bm{x}\_i)$
+
+</section>
+<section data-markdown>
+### Kernel Methods
+
 * Kernel methods are based on finding the similarity between any two data points
+
 * This similarity measure is captured by a *kernel function*
 * An example of a kernel function would be the the radial basis function kernel (RBF kernel) given by  $$\mathcal{K}(\bm{x_i}, \bm{x_j}) = \exp\left( - \frac{||\bm{x_i} - \bm{x_j}||^2}{2 \sigma^2} \right)$$ gives a similarity score between $0$ and $1$ for any two data points $\bm{x_i}$ and $\bm{x_j}$ which increases with distance between the two points.
 </section>
@@ -265,9 +425,9 @@ This paper suggests that is no physically realizable process $P$ to compute the 
 </section>
 <section>
 <h3>Kernel Methods</h3>
-<figure height="30%">
-<img width="45%" src="media/schuld_a.png"></img>
-<img width="50%" src="media/schuld_b.png"></img>
+<figure height="10%">
+<img height="30%" width="40%" src="media/schuld_a.png"></img>
+<img height="30%" width="45%" src="media/schuld_b.png"></img>
   <figcaption>courtesy Schuld & Petruccione:  Machine Learning with Quantum Computers</figcaption>
 </figure>
 
@@ -307,10 +467,20 @@ which gives
 </section>
 <section data-markdown>
 ### Kernel Methods
+
+> Given a set of vectors $S = \\{ \bm{x_1}, ..., \bm{x_m} \\}$ the **Gram matrix** is defined as the $m \times m$ matrix $G$ whose entries are $$G_{ij} = \braket{\bm{x_i}, \bm{x_j}}$$
+
+> Given a set of vectors $S = \\{ \phi(\bm{x_1}), ..., \phi(\bm{x_l}) \\}$ from the feature space of a kernel $\mathcal{K}(\bm{x_i}, \bm{x_j})$,
+    the Gram matrix $G$ is known as the **kernel matrix** $$G_{ij} = \braket{\phi(\bm{x_i}), \phi(\bm{x_j})} = \mathcal{K}(\bm{x_i}, \bm{x_j})$$
+</section>
+
+<section data-markdown>
+### Kernel Methods
 >  A function $f: \mathcal{X} \times \mathcal{X} \to \mathbb{R}$ is **finitely positive semi-definite** if it is a symmetric function for which the matrices formed by restriction to any finite subset of the space $\mathcal{X}$ (Gram matrices)  are positive semi-definite matrices.
 
 > Kernel functions are finitely positive semi-definite.
 </section>
+<section>
 <section data-markdown>
 ### Kernel Methods
 
@@ -319,13 +489,33 @@ which gives
 
 The proof of this theorem involves constructing a feature space $\mathbb{F}\_K$ and a feature map $\phi: \mathcal{X} \to \mathbb{F}\_K$ such that $$\mathcal{K}(\bm{x_i}, \bm{x_j}) = \braket{\phi(\bm{x_i}), \phi(\bm{x_j}) }$$
 
-This specific feature space involved in this construction is known as the **Reproducing Kernel Hilbert Space (RKHS)**.
+This specific feature space $\mathbb{F}\_K$ involved in this construction is known as the  
+**Reproducing Kernel Hilbert Space (RKHS)**.
+
 
 </section>
 <section data-markdown>
 ### Kernel Methods
 
-> A **Reproducing Kernel Hilbert space (RKHS)** is a Hilbert space of functions in which point evaluation is a continuous linear functional, that is, an RKHS is a Hilbert space of functions where all evaluation functionals $e_{\bm{x}} : \mathbb{F}\_K \to \mathbb{R}$ defined as $$e_{\bm{x}}(f) = f(\bm{x})$$ are bounded and linear.
+> Let $\mathcal{K}: \mathcal{X} \times \mathcal{X} \to \mathbb{R}$ be either a continuous function or a function on a finite domain which is finitely positive semi-definite.  
+> Then $\mathcal{K}$ is a kernel function. 
+
+Let $\phi(\bm{x}) = \mathcal{K}\_{\bm{x}} = \mathcal{K}(\bm{x}, .)$
+
+$$\mathcal{F} = \left \\{ \sum_{i=1}^m a\_i \mathcal{K}\_{\bm{x\_i}} \quad | \quad \bm{x\_i} \in \mathcal{X}, a\_i \in \mathbb{R} \right \\}$$
+
+</section>
+<section data-markdown>
+### Kernel Methods
+
+> Let $\mathcal{K}: \mathcal{X} \times \mathcal{X} \to \mathbb{R}$ be either a continuous function or a function on a finite domain which is finitely positive semi-definite.  
+> Then $\mathcal{K}$ is a kernel function. 
+
+Let $f(\bm{y}) = \sum_{i=1}^m a_i \mathcal{K}\_{\bm{x_i}}(\bm{y})$ and $g(\bm{y}) = \sum_{j=1}^n b_j \mathcal{K}\_{\bm{z_j}}(\bm{y}) $
+
+The inner product on $\mathcal{F}$ is defined as $$\braket{f,g} = \sum_{i=1}^m \sum_{j=1}^n a_i b_j \mathcal{K}(\bm{x_i}, \bm{z_j})$$
+
+</section>
 </section>
 <section data-markdown>
 ### Kernel Methods
@@ -339,7 +529,8 @@ This specific feature space involved in this construction is known as the **Repr
 ### Quantum Machine Learning as Kernel Methods
 
 
-> Schuld, M. (2021). *Supervised quantum machine learning models are kernel methods*  
+> Schuld, M. (2021).   
+> *Supervised quantum machine learning models are kernel methods*  
 > https://doi.org/10.48550/ARXIV.2101.11020
 
 This paper suggests that most quantum machine learning algorithms fall under the classification of kernel methods. 
@@ -362,11 +553,10 @@ $$\mathcal{K}(x_i, x_j) =\text{Trace}(\rho(x_j)^\dagger \rho(x_i)) = |\braket{\p
 ##### Inferences from RKHS of Quantum Kernel
 
 * Quantum Machine Learning models are linear models in the feature space
+* Their representation as kernel methods allows the results of classical kernel theory to be applied directly to these models.
 * Quantum Machine Learning models as a kernel method are universal function approximators
 * Training a quantum model means to find the measurement which minimises a cost function that depends on
 training data
-* Most quantum models can be formulated as general support vector machines with a kernel evaluated on a quantum computer
-* This allows the results of kernel theory to be applied directly to these models.
 </section>
 
 <section data-markdown>

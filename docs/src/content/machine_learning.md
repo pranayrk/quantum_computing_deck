@@ -28,6 +28,16 @@
 * Return y.
 </section>
 <section data-markdown>
+### HHL Algorithm in Machine Learning
+
+> Zhao, Z., Pozas-Kerstjens, A., Rebentrost, P., & Wittek, P. (2019).   
+> *Bayesian deep learning on a quantum computer*  
+> https://doi.org/10.1007/s42484-019-00004-7
+
+*"In June 2019, Zhao et al. developed an algorithm for performing Bayesian training of deep neural networks in quantum computers with an exponential speedup over classical training due to the use of the quantum algorithm for linear systems of equations"*
+</section>
+
+<section data-markdown>
 ### Types of Machine Learning Models
 * **Linear:** These are deterministic methods use a model function of the form $f = \phi(\bm{w}^T \bm{x})$.
 * **Neural Networks:** These models can be probabilistic or deterministic and they have components that resemble neurons.
@@ -41,7 +51,8 @@
 Unlike standard neural networks, Convolutional Neural Networks (CNNs) use the operation of **convolution** between layers.
 
 
-> Shen, F., & Liu, J. (2021). *QFCNN: Quantum Fourier Convolutional Neural Network*  
+> Shen, F., & Liu, J. (2021).   
+> *QFCNN: Quantum Fourier Convolutional Neural Network*  
 > https://doi.org/10.48550/arxiv.2106.10421
 
 This paper describes the use of QFT to speed up the convolution operation. 
@@ -76,7 +87,17 @@ This paper suggests that is no physically realizable process $P$ to compute the 
 </section>
 <section data-markdown>
 ### Kernel Methods
+* Some examples of machine learning models using kernel functions are given below:
+    * **Kernel Density Estimation:** $\displaystyle f(x) = \frac{1}{M} \sum_{i=1}^M \mathcal{K}(\bm{x}, \bm{x\_i})$
+    * **K-Nearest Neighbours:** $\displaystyle f(x) = \frac{1}{M} \sum_{i\\;|\\;\mathcal{K}(\bm{x}, \bm{x_i}) < C}^M y_i$
+    * **Support Vector Machine:** $\displaystyle f(x) = \sum_{i=1}^M \alpha\_i \mathcal{K}(\bm{x}, \bm{x}\_i)$
+
+</section>
+<section data-markdown>
+### Kernel Methods
+
 * Kernel methods are based on finding the similarity between any two data points
+
 * This similarity measure is captured by a *kernel function*
 * An example of a kernel function would be the the radial basis function kernel (RBF kernel) given by  $$\mathcal{K}(\bm{x_i}, \bm{x_j}) = \exp\left( - \frac{||\bm{x_i} - \bm{x_j}||^2}{2 \sigma^2} \right)$$ gives a similarity score between $0$ and $1$ for any two data points $\bm{x_i}$ and $\bm{x_j}$ which increases with distance between the two points.
 </section>
@@ -94,9 +115,9 @@ This paper suggests that is no physically realizable process $P$ to compute the 
 </section>
 <section>
 <h3>Kernel Methods</h3>
-<figure height="30%">
-<img width="45%" src="media/schuld_a.png"></img>
-<img width="50%" src="media/schuld_b.png"></img>
+<figure height="10%">
+<img height="30%" width="40%" src="media/schuld_a.png"></img>
+<img height="30%" width="45%" src="media/schuld_b.png"></img>
   <figcaption>courtesy Schuld & Petruccione:  Machine Learning with Quantum Computers</figcaption>
 </figure>
 
@@ -136,10 +157,20 @@ which gives
 </section>
 <section data-markdown>
 ### Kernel Methods
+
+> Given a set of vectors $S = \\{ \bm{x_1}, ..., \bm{x_m} \\}$ the **Gram matrix** is defined as the $m \times m$ matrix $G$ whose entries are $$G_{ij} = \braket{\bm{x_i}, \bm{x_j}}$$
+
+> Given a set of vectors $S = \\{ \phi(\bm{x_1}), ..., \phi(\bm{x_l}) \\}$ from the feature space of a kernel $\mathcal{K}(\bm{x_i}, \bm{x_j})$,
+    the Gram matrix $G$ is known as the **kernel matrix** $$G_{ij} = \braket{\phi(\bm{x_i}), \phi(\bm{x_j})} = \mathcal{K}(\bm{x_i}, \bm{x_j})$$
+</section>
+
+<section data-markdown>
+### Kernel Methods
 >  A function $f: \mathcal{X} \times \mathcal{X} \to \mathbb{R}$ is **finitely positive semi-definite** if it is a symmetric function for which the matrices formed by restriction to any finite subset of the space $\mathcal{X}$ (Gram matrices)  are positive semi-definite matrices.
 
 > Kernel functions are finitely positive semi-definite.
 </section>
+<section>
 <section data-markdown>
 ### Kernel Methods
 
@@ -148,13 +179,33 @@ which gives
 
 The proof of this theorem involves constructing a feature space $\mathbb{F}\_K$ and a feature map $\phi: \mathcal{X} \to \mathbb{F}\_K$ such that $$\mathcal{K}(\bm{x_i}, \bm{x_j}) = \braket{\phi(\bm{x_i}), \phi(\bm{x_j}) }$$
 
-This specific feature space involved in this construction is known as the **Reproducing Kernel Hilbert Space (RKHS)**.
+This specific feature space $\mathbb{F}\_K$ involved in this construction is known as the  
+**Reproducing Kernel Hilbert Space (RKHS)**.
+
 
 </section>
 <section data-markdown>
 ### Kernel Methods
 
-> A **Reproducing Kernel Hilbert space (RKHS)** is a Hilbert space of functions in which point evaluation is a continuous linear functional, that is, an RKHS is a Hilbert space of functions where all evaluation functionals $e_{\bm{x}} : \mathbb{F}\_K \to \mathbb{R}$ defined as $$e_{\bm{x}}(f) = f(\bm{x})$$ are bounded and linear.
+> Let $\mathcal{K}: \mathcal{X} \times \mathcal{X} \to \mathbb{R}$ be either a continuous function or a function on a finite domain which is finitely positive semi-definite.  
+> Then $\mathcal{K}$ is a kernel function. 
+
+Let $\phi(\bm{x}) = \mathcal{K}\_{\bm{x}} = \mathcal{K}(\bm{x}, .)$
+
+$$\mathcal{F} = \left \\{ \sum_{i=1}^m a\_i \mathcal{K}\_{\bm{x\_i}} \quad | \quad \bm{x\_i} \in \mathcal{X}, a\_i \in \mathbb{R} \right \\}$$
+
+</section>
+<section data-markdown>
+### Kernel Methods
+
+> Let $\mathcal{K}: \mathcal{X} \times \mathcal{X} \to \mathbb{R}$ be either a continuous function or a function on a finite domain which is finitely positive semi-definite.  
+> Then $\mathcal{K}$ is a kernel function. 
+
+Let $f(\bm{y}) = \sum_{i=1}^m a_i \mathcal{K}\_{\bm{x_i}}(\bm{y})$ and $g(\bm{y}) = \sum_{j=1}^n b_j \mathcal{K}\_{\bm{z_j}}(\bm{y}) $
+
+The inner product on $\mathcal{F}$ is defined as $$\braket{f,g} = \sum_{i=1}^m \sum_{j=1}^n a_i b_j \mathcal{K}(\bm{x_i}, \bm{z_j})$$
+
+</section>
 </section>
 <section data-markdown>
 ### Kernel Methods
@@ -168,7 +219,8 @@ This specific feature space involved in this construction is known as the **Repr
 ### Quantum Machine Learning as Kernel Methods
 
 
-> Schuld, M. (2021). *Supervised quantum machine learning models are kernel methods*  
+> Schuld, M. (2021).   
+> *Supervised quantum machine learning models are kernel methods*  
 > https://doi.org/10.48550/ARXIV.2101.11020
 
 This paper suggests that most quantum machine learning algorithms fall under the classification of kernel methods. 
@@ -191,9 +243,8 @@ $$\mathcal{K}(x_i, x_j) =\text{Trace}(\rho(x_j)^\dagger \rho(x_i)) = |\braket{\p
 ##### Inferences from RKHS of Quantum Kernel
 
 * Quantum Machine Learning models are linear models in the feature space
+* Their representation as kernel methods allows the results of classical kernel theory to be applied directly to these models.
 * Quantum Machine Learning models as a kernel method are universal function approximators
 * Training a quantum model means to find the measurement which minimises a cost function that depends on
 training data
-* Most quantum models can be formulated as general support vector machines with a kernel evaluated on a quantum computer
-* This allows the results of kernel theory to be applied directly to these models.
 </section>

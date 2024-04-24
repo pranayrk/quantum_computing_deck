@@ -1,6 +1,4 @@
-<section data-markdown>
-# Fundamentals of Quantum Computing
-</section>
+<section>
 <section data-markdown>
 ### Fundamentals of Quantum Computing
 
@@ -90,5 +88,6 @@ Consider the qubit in state $\ket{\psi} = a \ket{0} + b \ket{1}$ and a measureme
 
 The probability of measuring $\ket{0}$ is $|a|^2$ and the probability of measuring $\ket{1}$ is $|b|^2$
 
+</section>
 </section>
 

@@ -11,7 +11,9 @@
     font-size: 100%;
     font-style: normal;
     background-color: #e7eaf6;
-    padding: 25px;
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .reveal em {
@@ -25,11 +27,11 @@
 }
 
 .reveal li {
-    font-size: 35px;
+    font-size: 33px;
 }
 
 .reveal p {
-    font-size: 35px;
+    font-size: 34px;
 }
 
 .reveal figcaption{
