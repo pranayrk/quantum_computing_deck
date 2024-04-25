@@ -14,6 +14,7 @@
 * Bhattacharyya, S., Pan, I., Mani, A., Chakraborti, S., \& Behrman, E. (2020). Quantum Machine Learning. de Gruyter.
 * Pastorello, D. (2023). Concise guide to Quantum Machine Learning. Springer.
 * Combarro, E. F., \& Gonzalez-Castillo, S. (2023). A practical guide to quantum machine learning and quantum optimisation: Hands-On Approach to Modern Quantum Algorithms.
+* Shawe-Taylor, J., & Cristianini, N. (2004). Kernel methods for pattern analysis. Cambridge University Press.
 </section>
 
 

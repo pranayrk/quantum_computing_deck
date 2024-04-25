@@ -28,7 +28,7 @@
 * Return y.
 </section>
 <section data-markdown>
-### HHL Algorithm in Machine Learning
+### HHL Algorithm in Training
 
 > Zhao, Z., Pozas-Kerstjens, A., Rebentrost, P., & Wittek, P. (2019).   
 > *Bayesian deep learning on a quantum computer*  
@@ -56,6 +56,13 @@ Unlike standard neural networks, Convolutional Neural Networks (CNNs) use the op
 > https://doi.org/10.48550/arxiv.2106.10421
 
 This paper describes the use of QFT to speed up the convolution operation. 
+</section>
+<section>
+<h3>Quantum Neural Network using QFT</h3>
+<figure height="10%">
+<img src="media/neuralnetworks.png"></img>
+  <figcaption>courtesy GeeksForGeeks</figcaption>
+</figure>
 </section>
 <section data-markdown>
 ### Quantum Neural Network using QFT
@@ -160,7 +167,7 @@ which gives
 
 > Given a set of vectors $S = \\{ \bm{x_1}, ..., \bm{x_m} \\}$ the **Gram matrix** is defined as the $m \times m$ matrix $G$ whose entries are $$G_{ij} = \braket{\bm{x_i}, \bm{x_j}}$$
 
-> Given a set of vectors $S = \\{ \phi(\bm{x_1}), ..., \phi(\bm{x_l}) \\}$ from the feature space of a kernel $\mathcal{K}(\bm{x_i}, \bm{x_j})$,
+> Given a set of vectors $S = \\{ \phi(\bm{x_1}), ..., \phi(\bm{x_m}) \\}$ from the feature space of a kernel $\mathcal{K}(\bm{x_i}, \bm{x_j})$,
     the Gram matrix $G$ is known as the **kernel matrix** $$G_{ij} = \braket{\phi(\bm{x_i}), \phi(\bm{x_j})} = \mathcal{K}(\bm{x_i}, \bm{x_j})$$
 </section>
 
@@ -168,7 +175,8 @@ which gives
 ### Kernel Methods
 >  A function $f: \mathcal{X} \times \mathcal{X} \to \mathbb{R}$ is **finitely positive semi-definite** if it is a symmetric function for which the matrices formed by restriction to any finite subset of the space $\mathcal{X}$ (Gram matrices)  are positive semi-definite matrices.
 
-> Kernel functions are finitely positive semi-definite.
+> Kernel functions are finitely positive semi-definite  
+> That is for a kernel function $\mathcal{K}(\bm{x_i}, \bm{x_j})$, the kernel matrix $G$ is positive semi-definite.
 </section>
 <section>
 <section data-markdown>
